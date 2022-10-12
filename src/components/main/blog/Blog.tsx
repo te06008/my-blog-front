@@ -1,4 +1,6 @@
+import { useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
+import useBlog from '../../../hooks/main/useBlog/useBlog';
 import Styled from './Blog.styled';
 import BlogComment from './BlogComment';
 import BlogFooter from './BlogFooter';
@@ -7,6 +9,7 @@ import ContentBody from './ContentBody';
 import ContentHeader from './ContentHeader';
 
 function Blog() {
+  const [tocList, setTocList] = useBlog();
   return (
     <Styled.Blog>
       <Helmet>
@@ -15,9 +18,9 @@ function Blog() {
       <Styled.BlogWrapper>
         <Styled.BlogContent>
           <ContentHeader />
-          <ContentBody />
+          <ContentBody setTocList={setTocList} />
         </Styled.BlogContent>
-        <BlogTOC />
+        <BlogTOC tocList={tocList} />
       </Styled.BlogWrapper>
       <BlogFooter />
       <BlogComment />

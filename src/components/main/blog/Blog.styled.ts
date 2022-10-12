@@ -30,15 +30,11 @@ const BlogWrapper = styled.div`
 const BlogContent = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 60px;
-  width: calc(100% - 250px);
-  @media (max-width: 800px) {
+  gap: 20px;
+  width: calc(100% - 280px);
+  @media (max-width: 1366px) {
     min-width: 100%;
   }
-  @media (max-width: 1024px) {
-    width: calc(100% - 220px);
-  }
 `;
-
 // eslint-disable-next-line import/no-anonymous-default-export
 export default { Blog, BlogWrapper, BlogContent };

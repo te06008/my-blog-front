@@ -12,14 +12,14 @@ function BlogComment() {
       <Styled.CommentList>
         {[0, 1, 2, 3].map((item) => (
           <Styled.CommentItem>
-            <div className='comment-item-header'>
-              <IoPersonCircleSharp size='3em' className='person-icon' />
-              <div className='header-text'>
-                <div className='username'>Te06008</div>
-                <div className='date'>2022년 10월 7일 PM 3:42</div>
+            <div className="comment-item-header">
+              <IoPersonCircleSharp size="3em" className="person-icon" />
+              <div className="header-text">
+                <div className="username">Te06008</div>
+                <div className="date">2022년 10월 7일 PM 3:42</div>
               </div>
             </div>
-            <p className='comment-item-body'>{comment}</p>
+            <p className="comment-item-body">{comment}</p>
           </Styled.CommentItem>
         ))}
       </Styled.CommentList>

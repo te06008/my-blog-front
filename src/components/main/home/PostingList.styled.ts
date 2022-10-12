@@ -30,7 +30,7 @@ const PostingListHeader = styled.div`
   gap: 20px;
   font-weight: 600;
   min-height: 44px;
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     max-width: 100%;
     gap: 10px;
   }
@@ -98,7 +98,7 @@ const SelectedCategory = styled.div`
 const PostingListBody = styled.div`
   display: flex;
   justify-content: space-between;
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     flex-direction: column-reverse;
     gap: 40px;
   }

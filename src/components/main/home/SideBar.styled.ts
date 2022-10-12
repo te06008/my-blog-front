@@ -1,10 +1,17 @@
 import styled from 'styled-components';
 
 const SideBar = styled.div`
+  position: -webkit-sticky;
+  position: sticky;
+  top: 40px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   min-width: 250px;
+  height: 100%;
+  @media (max-width: 1024px) {
+    position: static;
+  }
   @media (max-width: 1366px) {
     min-width: 200px;
   }

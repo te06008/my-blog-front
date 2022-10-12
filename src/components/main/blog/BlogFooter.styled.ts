@@ -9,12 +9,9 @@ const BlogFooter = styled.div`
   flex-direction: column;
   gap: 60px;
   padding-bottom: 40px;
-  width: calc(100% - 250px);
-  @media (max-width: 800px) {
+  width: calc(100% - 280px);
+  @media (max-width: 1366px) {
     min-width: 100%;
-  }
-  @media (max-width: 1024px) {
-    width: calc(100% - 220px);
   }
 `;
 
@@ -41,6 +38,9 @@ const NavigatorItem = styled.div<NavigatorItemInterface>`
     @media (max-width: 1024px) {
       font-size: 14px;
     }
+    @media (max-width: 480px) {
+      font-size: 13px;
+    }
   }
 `;
 
@@ -54,6 +54,9 @@ const RelatedPosts = styled.div`
     margin-bottom: 16px;
     @media (max-width: 1024px) {
       font-size: 18px;
+    }
+    @media (max-width: 480px) {
+      font-size: 17px;
     }
   }
   .posts-item {
@@ -71,6 +74,9 @@ const RelatedPosts = styled.div`
     }
     @media (max-width: 1024px) {
       font-size: 14px;
+    }
+    @media (max-width: 480px) {
+      font-size: 13px;
     }
   }
 `;

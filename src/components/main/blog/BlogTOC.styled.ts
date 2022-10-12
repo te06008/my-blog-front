@@ -5,18 +5,22 @@ interface TOCItemInterface {
 }
 
 const TOC = styled.div`
+  position: -webkit-sticky;
+  position: sticky;
+  top: 40px;
   display: flex;
   flex-direction: column;
   padding-top: 20px;
-  min-width: 200px;
+  max-width: 250px;
   gap: 20px;
   letter-spacing: -0.5px;
+  height: 100%;
   .toc-title {
     font-size: 21px;
     font-weight: 600;
     color: #222;
   }
-  @media (max-width: 800px) {
+  @media (max-width: 1366px) {
     display: none;
   }
 `;
@@ -27,13 +31,14 @@ const TOCList = styled.div`
   border-left: 1px solid #ddd;
 `;
 
-const TOCItem = styled.div<TOCItemInterface>`
+const TOCItem = styled.a<TOCItemInterface>`
   line-height: 1.5;
   padding: 2px 8px;
   padding-left: ${(p) => (p.isSub ? '28px' : '12px')};
   font-size: 16px;
   color: #2a2a2a;
   cursor: pointer;
+  text-decoration: none;
   @media (hover: hover) {
     :hover {
       opacity: 0.7;

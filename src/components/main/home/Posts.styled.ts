@@ -12,9 +12,6 @@ const Posts = styled.div`
     max-width: 60%;
   }
   @media (max-width: 1024px) {
-    max-width: 50%;
-  }
-  @media (max-width: 768px) {
     max-width: 100%;
   }
 `;

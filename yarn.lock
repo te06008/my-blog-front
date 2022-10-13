@@ -2108,6 +2108,11 @@
   resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-2.7.1.tgz#dfd20e2dc35f027cdd6c1908e80a5ddc7499670e"
   integrity sha512-ri0UmynRRvZiiUJdiz38MmIblKK+oH30MztdBVR95dv/Ubw6neWSb8u1XpRb72L4qsZOhz+L+z9JD40SJmfWow==
 
+"@types/prismjs@^1.26.0":
+  version "1.26.0"
+  resolved "https://registry.yarnpkg.com/@types/prismjs/-/prismjs-1.26.0.tgz#a1c3809b0ad61c62cac6d4e0c56d610c910b7654"
+  integrity sha512-ZTaqn/qSqUuAq1YwvOFQfVW1AR/oQJlLSZVustdjwI+GZ8kr0MSHBj0tsXPW1EqHubx50gtBEjbPGsdZwQwCjQ==
+
 "@types/prop-types@*":
   version "15.7.5"
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.5.tgz#5f19d2b85a98e9558036f6a3cacc8819420f05cf"
@@ -7974,6 +7979,11 @@ pretty-format@^29.0.0, pretty-format@^29.1.0:
     ansi-styles "^5.0.0"
     react-is "^18.0.0"
 
+prismjs@^1.23.0, prismjs@^1.29.0:
+  version "1.29.0"
+  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.29.0.tgz#f113555a8fa9b57c35e637bba27509dcf802dd12"
+  integrity sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==
+
 process-nextick-args@~2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.1.tgz#7820d9b16120cc55ca9ae7792680ae7dba6d7fe2"
@@ -9547,6 +9557,11 @@ tsutils@^3.21.0:
   integrity sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==
   dependencies:
     tslib "^1.8.1"
+
+tui-color-picker@^2.2.6:
+  version "2.2.8"
+  resolved "https://registry.yarnpkg.com/tui-color-picker/-/tui-color-picker-2.2.8.tgz#8e140ab04066dbdb2353c4a1f434ad7d8d7b0d73"
+  integrity sha512-q5sE9NQ5NR9lYpilYjcI7Sdv0KCogo+W8fZY+AYTj/HYg+9fscYy3UuJ6UQiV1bF+ARCLwFRWC8UcOt9kuUctQ==
 
 tunnel-agent@^0.6.0:
   version "0.6.0"

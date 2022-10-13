@@ -13,7 +13,7 @@ function HomeBanner() {
         height={'60vh'}
         images={images}
         showBullets={true}
-        showNavs={true}
+        showNavs={false}
         autoPlay={true}
         autoPlayDelay={5}
       />

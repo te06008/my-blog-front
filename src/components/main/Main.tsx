@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router';
+import { Outlet, useNavigate } from 'react-router';
 import Styled from './Main.styled';
 import NavigationBar from './navigationBar/NavigationBar';
 import { BsPencilSquare } from 'react-icons/bs';
@@ -7,6 +7,7 @@ import useScrollToggle from '../../hooks/main/useScrollToggle';
 import Footer from './footer/Footer';
 function Main() {
   const [scrollBtnRef, moveToTop] = useScrollToggle();
+  const navigate = useNavigate();
   return (
     <Styled.Main>
       <NavigationBar />
@@ -14,7 +15,7 @@ function Main() {
       <Styled.ScrollTopButton onClick={moveToTop} ref={scrollBtnRef}>
         <FaArrowUp />
       </Styled.ScrollTopButton>
-      <Styled.PostButton onClick={() => alert('글쓰기 구현 예정')}>
+      <Styled.PostButton onClick={() => navigate('/write')}>
         <BsPencilSquare />
       </Styled.PostButton>
       <Footer />

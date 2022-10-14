@@ -46,7 +46,6 @@ const ContentHeader = styled.div`
       margin: 2px 10px 0px 10px;
     }
     .content-header-icon {
-      margin-top: 2px;
       margin-right: 2px;
     }
   }

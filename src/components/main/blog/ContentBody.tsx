@@ -21,41 +21,25 @@ import 'prismjs/components/prism-json';
 import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-css-extras';
 import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
+import { memo } from 'react';
 
 function ContentBody({
+  data,
   setTocList,
 }: {
+  data: any;
   setTocList: React.Dispatch<React.SetStateAction<TOCList[]>>;
 }) {
-  const markdown = `## c++ 코드 사용해보기
-  
-  c++ 코드를 작성해 보겠습니다.
-
-  ### main.cpp
-
-  <br />
-  \`\`\`cpp
-  #include <stdio.h>
-  using namespace std;
-  int main(){
-    int n;
-    cin >> n;
-    cout << n;
-    return 0;
-  }
-  \`\`\`
-  
-  `;
-
   const [contentRef] = useContentBody({ setTocList });
+  console.log(data);
   return (
     <Styled.ContentBody ref={contentRef}>
       <Viewer
-        initialValue={markdown}
+        initialValue={data}
         plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
       />
     </Styled.ContentBody>
   );
 }
 
-export default ContentBody;
+export default memo(ContentBody);

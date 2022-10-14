@@ -41,6 +41,25 @@ function useWrite() {
     return false;
   };
 
+  const onPreview = () => {
+    const [title, content, category, tag] = getFormData();
+    console.log('asdf');
+    const previewJson = JSON.stringify({
+      title: title,
+      content: content,
+      category: category,
+      tags: tag,
+    });
+    window.localStorage.setItem('preview', previewJson);
+
+    window.open('http://localhost:3000/preview', '_blank');
+    const getpreview = window.localStorage.getItem('preview');
+
+    if (getpreview) {
+      console.log(JSON.parse(getpreview));
+    }
+  };
+
   const onSubmit = () => {
     const [title, content, category, tag] = getFormData();
     if (!onFormRequired({ title, content, category, tag })) {
@@ -50,11 +69,12 @@ function useWrite() {
     alert('성공');
   };
 
-  return [titleRef, contentRef, categoryRef, tagRef, onSubmit] as [
+  return [titleRef, contentRef, categoryRef, tagRef, onPreview, onSubmit] as [
     typeof titleRef,
     typeof contentRef,
     typeof categoryRef,
     typeof tagRef,
+    typeof onPreview,
     typeof onSubmit,
   ];
 }

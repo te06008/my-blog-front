@@ -11,7 +11,7 @@ const menuList = [
   },
   {
     text: 'About Me',
-    url: 'aboutme',
+    url: 'about',
   },
   {
     text: 'Login',

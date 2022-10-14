@@ -25,7 +25,8 @@ import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
 import useWrite from '../../../hooks/main/useWrite/useWrite';
 
 function Write() {
-  const [titleRef, contentRef, categoryRef, tagRef, onSubmit] = useWrite();
+  const [titleRef, contentRef, categoryRef, tagRef, onPreview, onSubmit] =
+    useWrite();
   return (
     <Styled.Write>
       <Styled.Title>글쓰기</Styled.Title>
@@ -70,7 +71,9 @@ function Write() {
         placeholder="태그 입력(#필요없이 ,로 구분)"
       />
       <Styled.ButtonWrapper>
-        <button className="preview-btn">미리보기</button>
+        <button className="preview-btn" onClick={onPreview}>
+          미리보기
+        </button>
         <button className="submit-btn" onClick={onSubmit}>
           확인
         </button>

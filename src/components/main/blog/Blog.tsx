@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { memo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import useBlog from '../../../hooks/main/useBlog/useBlog';
 import Styled from './Blog.styled';
@@ -8,8 +8,10 @@ import BlogTOC from './BlogTOC';
 import ContentBody from './ContentBody';
 import ContentHeader from './ContentHeader';
 
-function Blog() {
-  const [tocList, setTocList] = useBlog();
+function Blog({ isPreview, ...rest }: { isPreview: boolean }) {
+  const [tocList, setTocList, headerData, contentData] = useBlog({ isPreview });
+  console.log(headerData, contentData);
+  if (!contentData) return <div>로딩중..</div>;
   return (
     <Styled.Blog>
       <Helmet>
@@ -17,15 +19,15 @@ function Blog() {
       </Helmet>
       <Styled.BlogWrapper>
         <Styled.BlogContent>
-          <ContentHeader />
-          <ContentBody setTocList={setTocList} />
+          <ContentHeader data={headerData} />
+          <ContentBody data={contentData} setTocList={setTocList} />
         </Styled.BlogContent>
         <BlogTOC tocList={tocList} />
       </Styled.BlogWrapper>
-      <BlogFooter />
-      <BlogComment />
+      {!isPreview && <BlogFooter />}
+      {!isPreview && <BlogComment />}
     </Styled.Blog>
   );
 }
 
-export default Blog;
+export default memo(Blog);

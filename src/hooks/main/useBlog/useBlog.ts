@@ -5,7 +5,7 @@ import { HeaderDataInterface, TOCList } from '../../../types';
 function useBlog({ isPreview }: { isPreview: boolean }) {
   const [tocList, setTocList] = useState<TOCList[]>([]);
   const [headerData, setHeaderData] = useState<HeaderDataInterface>({
-    title: 'asdfasdfasdf',
+    title: '',
     create_datetime: '',
     update_datetime: '',
     tags: [],
@@ -25,6 +25,8 @@ function useBlog({ isPreview }: { isPreview: boolean }) {
         tags: previewData.tags,
       });
       setContentData(previewData.content);
+    } else {
+      setContentData('## 아직 패칭로직을 구현하지 않았다...');
     }
   }, [isPreview]);
 

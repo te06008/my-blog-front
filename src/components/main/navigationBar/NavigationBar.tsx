@@ -2,7 +2,13 @@ import Styled from './NavigationBar.styled';
 import { AiOutlineMenu } from 'react-icons/ai';
 import useNavigationBar from '../../../hooks/main/useNavigationBar/useNavigationBar';
 import { useNavigate } from 'react-router';
-import { MdLightMode, MdDarkMode } from 'react-icons/md';
+import {
+  DARK,
+  isOsLightThemeAtom as isLightThemeAtom,
+  LIGHT,
+} from '../../../atoms/ThemeAtom';
+import { useSetRecoilState } from 'recoil';
+import ThemeMode from './ThemeMode';
 
 const menuList = [
   {
@@ -20,21 +26,32 @@ const menuList = [
 ];
 
 function NavigationBar() {
-  const [isMenuClick, onMenuClick, selectedMenu] = useNavigationBar();
+  const [isMenuClick, onMenuClick, selectedMenu, onMenuItemClick] =
+    useNavigationBar();
   const navigate = useNavigate();
+  const setIsLight = useSetRecoilState(isLightThemeAtom);
 
   return (
     <Styled.NavigationContainer>
       <Styled.Navigation>
-        <Styled.NavigationTitle onClick={() => navigate('/home')}>
-          Tech Blog
+        <Styled.NavigationTitle onClick={() => onMenuItemClick('/main')}>
+          Te06008's Blog
         </Styled.NavigationTitle>
         <Styled.NavigationMenu>
-          <MdLightMode className="theme-icon" size="1.4em" />
-          {menuList.map((item, key) => (
+          <div
+            onClick={() => {
+              setIsLight((s) => {
+                localStorage.setItem('theme', !s ? LIGHT : DARK);
+                return !s;
+              });
+            }}
+          >
+            <ThemeMode />
+          </div>
+          {menuList.map((item) => (
             <Styled.NavigationMenuItem
               selected={selectedMenu === item.url}
-              key={item.text}
+              key={item.url}
               onClick={() => navigate(`/${item.url}`)}
             >
               {item.text}
@@ -42,18 +59,18 @@ function NavigationBar() {
           ))}
           <AiOutlineMenu
             onClick={onMenuClick}
-            className="menu-icon"
-            size="1.4em"
+            className='menu-icon'
+            size='1.4em'
           />
         </Styled.NavigationMenu>
       </Styled.Navigation>
       {isMenuClick && (
         <Styled.MenuButtonList>
-          {menuList.map((item, key) => (
+          {menuList.map((item) => (
             <Styled.MenuButtonItem
               selected={selectedMenu === item.url}
               key={item.text}
-              onClick={() => navigate(`/${item.url}`)}
+              onClick={() => onMenuItemClick(item.url)}
             >
               {item.text}
             </Styled.MenuButtonItem>

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const Blog = styled.div`
+  min-height: calc(85vh - 120px);
   display: flex;
   flex-direction: column;
   gap: 60px;

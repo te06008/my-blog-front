@@ -7,7 +7,7 @@ function Home() {
   return (
     <Styled.Home>
       <Helmet>
-        <title>Home | Te06008's Blog</title>
+        <title>Te06008 | Home</title>
       </Helmet>
       <HomeBanner />
       <PostingList />

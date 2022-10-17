@@ -34,7 +34,7 @@ function NavigationBar() {
   return (
     <Styled.NavigationContainer>
       <Styled.Navigation>
-        <Styled.NavigationTitle onClick={() => onMenuItemClick('/main')}>
+        <Styled.NavigationTitle onClick={() => onMenuItemClick('/home')}>
           Te06008's Blog
         </Styled.NavigationTitle>
         <Styled.NavigationMenu>
@@ -59,8 +59,8 @@ function NavigationBar() {
           ))}
           <AiOutlineMenu
             onClick={onMenuClick}
-            className='menu-icon'
-            size='1.4em'
+            className="menu-icon"
+            size="1.4em"
           />
         </Styled.NavigationMenu>
       </Styled.Navigation>

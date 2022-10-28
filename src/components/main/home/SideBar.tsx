@@ -1,12 +1,13 @@
 import Styled from './SideBar.styled';
 import { IoIosSearch } from 'react-icons/io';
+import useSideBar from '../../../hooks/main/useHome/useSideBar';
 
-const menuList = ['All', 'React', 'JavaScript', 'PS', '일상'];
 function SideBar({
-  onCategoryAdd,
+  onCategoryClick,
 }: {
-  onCategoryAdd: (category: string) => void;
+  onCategoryClick: (categoryName: string, categoryId: number) => void;
 }) {
+  const [categoryList] = useSideBar();
   //검색내용 디바운스 구현 필요
   return (
     <Styled.SideBar>
@@ -15,13 +16,13 @@ function SideBar({
         <input type="text" placeholder="제목, 내용, 태그등" />
       </Styled.SearchBar>
       <Styled.CategoryBar>
-        {menuList.map((category) => (
+        {categoryList.map((category) => (
           <Styled.CategoryMenu
-            key={category}
-            onClick={() => onCategoryAdd(category)}
+            key={category.id}
+            onClick={() => onCategoryClick(category.category_name, category.id)}
           >
-            <div className="categorymenu-text">{category}</div>
-            <div className="categorymenu-number">{14}</div>
+            <div className="categorymenu-text">{category.category_name}</div>
+            <div className="categorymenu-number">{category.count}</div>
           </Styled.CategoryMenu>
         ))}
       </Styled.CategoryBar>

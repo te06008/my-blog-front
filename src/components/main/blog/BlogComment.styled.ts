@@ -26,38 +26,73 @@ const CommentItem = styled.div`
   }
   .comment-item-header {
     display: flex;
-    height: 50px;
-    gap: 24px;
+    justify-content: space-between;
 
-    .person-icon {
-      color: #b2b2b2;
-      font-size: 18px;
-      @media (max-width: 768px) {
-        font-size: 16px;
+    .comment-item-wrapper {
+      display: flex;
+      height: 50px;
+      gap: 24px;
+      .person-icon {
+        color: #b2b2b2;
+        font-size: 18px;
+        @media (max-width: 768px) {
+          font-size: 16px;
+        }
+        @media (max-width: 480px) {
+          font-size: 14px;
+        }
       }
-      @media (max-width: 480px) {
-        font-size: 14px;
+      .header-text {
+        display: flex;
+        flex-direction: column;
+        margin-top: 6px;
+        gap: 8px;
+        @media (max-width: 768px) {
+          margin-top: 4px;
+        }
+        @media (max-width: 480px) {
+          margin-top: 3px;
+        }
+        .username {
+          color: #212529;
+          font-weight: 500;
+          @media (max-width: 768px) {
+            font-size: 15px;
+          }
+          @media (max-width: 480px) {
+            font-size: 13px;
+          }
+        }
+        .date {
+          color: #868e96;
+          font-size: 14px;
+          font-weight: 300;
+          @media (max-width: 768px) {
+            font-size: 13px;
+          }
+          @media (max-width: 480px) {
+            font-size: 12px;
+          }
+        }
       }
     }
-    .header-text {
-      display: flex;
-      flex-direction: column;
-      margin-top: 5px;
-      gap: 8px;
-      .username {
-        color: #212529;
-        font-weight: 500;
-        @media (max-width: 768px) {
-          font-size: 15px;
+    .header-delete-btn {
+      margin-top: 16px;
+      font-size: 15px;
+      color: #2b2b2b;
+      cursor: pointer;
+      @media (hover: hover) {
+        :hover {
+          text-decoration: underline;
+          //transform: scale(1.1);
         }
       }
-      .date {
-        color: #868e96;
-        font-size: 14px;
-        font-weight: 300;
-        @media (max-width: 768px) {
-          font-size: 13px;
-        }
+      @media (max-width: 768px) {
+        margin-top: 12px;
+      }
+      @media (max-width: 480px) {
+        margin-top: 10px;
+        font-size: 13px;
       }
     }
   }

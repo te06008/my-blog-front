@@ -12,6 +12,9 @@ const GlobalStyles = createGlobalStyle<{ theme: ThemeInterface }>`
     color : ${(p) => p.theme.color.default};
   }
 
+  .observer{
+    height: 1px;
+  }
 
 `;
 

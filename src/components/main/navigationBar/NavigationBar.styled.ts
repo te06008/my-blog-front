@@ -93,7 +93,7 @@ const MenuButtonList = styled.div`
   align-items: center;
   animation: growDown 300ms ease-in-out forwards;
   transform-origin: top center;
-  min-width: 100vw;
+  min-width: 100%;
   margin-top: -10px;
   padding-bottom: 10px;
   @media (min-width: 768px) {

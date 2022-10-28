@@ -1,31 +1,49 @@
+import { memo } from 'react';
 import { BsFillCircleFill } from 'react-icons/bs';
 import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
+import { useNavigate } from 'react-router';
+import { FooterDataInterface } from '../../../types';
 import Styled from './BlogFooter.styled';
 
-function BlogFooter() {
+function BlogFooter({ data }: { data: FooterDataInterface }) {
+  const navigate = useNavigate();
+
   return (
     <Styled.BlogFooter>
       <Styled.FooterNavigator>
-        <Styled.NavigatorItem isVisible={true}>
+        <Styled.NavigatorItem
+          isVisible={data.previous.id !== -1}
+          onClick={() => navigate(`/blog/${data.previous.id}`)}
+        >
           <IoIosArrowBack size="1.5em" />
-          <div className="navigator-item-text">React로 블로그 만들기</div>
+          <div className="navigator-item-text">{data.previous.title}</div>
         </Styled.NavigatorItem>
-        <Styled.NavigatorItem isVisible={true}>
-          <div className="navigator-item-text">React로 블로그 만들기</div>
+        <Styled.NavigatorItem
+          isVisible={data.next.id !== -1}
+          onClick={() => navigate(`/blog/${data.next.id}`)}
+        >
+          <div className="navigator-item-text">{data.next.title}</div>
           <IoIosArrowForward size="1.5em" />
         </Styled.NavigatorItem>
       </Styled.FooterNavigator>
-      <Styled.RelatedPosts>
-        <div className="posts-title"> Related Posts</div>
-        {[0, 1, 2, 3].map((post) => (
-          <div className="posts-item">
-            <BsFillCircleFill size="0.4em" />
-            React로 블로그 만들기
-          </div>
-        ))}
-      </Styled.RelatedPosts>
+      {data.related_posts.length > 0 && (
+        <Styled.RelatedPosts>
+          <div className="posts-title"> Related Posts</div>
+          {data.related_posts.map((post) => (
+            <div className="posts-item" key={post.id}>
+              <BsFillCircleFill size="0.4em" />
+              <div
+                className="posts-item-text"
+                onClick={() => navigate(`/blog/${post.id}`)}
+              >
+                {post.title}
+              </div>
+            </div>
+          ))}
+        </Styled.RelatedPosts>
+      )}
     </Styled.BlogFooter>
   );
 }
 
-export default BlogFooter;
+export default memo(BlogFooter);

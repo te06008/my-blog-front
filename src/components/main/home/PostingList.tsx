@@ -4,27 +4,30 @@ import Posts from './Posts';
 import SideBar from './SideBar';
 
 function PostingList() {
-  const [selectedCategories, onCategoryAdd, onCategoryDelete] =
-    usePostingList();
-
+  const [
+    selectedCategory,
+    onCategoryClick,
+    onCategoryDelete,
+    isLoading,
+    postList,
+    scrollCallback,
+  ] = usePostingList();
+  console.log(postList);
   return (
     <Styled.PostingList>
       <Styled.PostingListHeader>
         <div className="header-title">Recent Posts</div>
         <div className="header-selected-list">
-          {selectedCategories.map((category) => (
-            <Styled.SelectedCategory
-              key={category}
-              onClick={() => onCategoryDelete(category)}
-            >
-              {category}
+          {selectedCategory !== 'All' && (
+            <Styled.SelectedCategory onClick={onCategoryDelete}>
+              {selectedCategory}
             </Styled.SelectedCategory>
-          ))}
+          )}
         </div>
       </Styled.PostingListHeader>
       <Styled.PostingListBody>
-        <Posts />
-        <SideBar onCategoryAdd={onCategoryAdd} />
+        <Posts data={postList} scrollCallback={scrollCallback} />
+        <SideBar onCategoryClick={onCategoryClick} />
       </Styled.PostingListBody>
     </Styled.PostingList>
   );

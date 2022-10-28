@@ -3,11 +3,12 @@ import Styled from './Main.styled';
 import NavigationBar from './navigationBar/NavigationBar';
 import { BsPencilSquare } from 'react-icons/bs';
 import { FaArrowUp } from 'react-icons/fa';
-import useScrollToggle from '../../hooks/main/useScrollToggle';
+import useScrollToggle from '../../hooks/useScrollToggle';
 import Footer from './footer/Footer';
 function Main() {
   const [scrollBtnRef, moveToTop] = useScrollToggle();
   const navigate = useNavigate();
+  const isLogin = window.sessionStorage.getItem('isLogin');
   return (
     <Styled.Main>
       <NavigationBar />
@@ -15,9 +16,11 @@ function Main() {
       <Styled.ScrollTopButton onClick={moveToTop} ref={scrollBtnRef}>
         <FaArrowUp />
       </Styled.ScrollTopButton>
-      <Styled.PostButton onClick={() => navigate('/write')}>
-        <BsPencilSquare />
-      </Styled.PostButton>
+      {isLogin && (
+        <Styled.PostButton onClick={() => navigate('/write')}>
+          <BsPencilSquare />
+        </Styled.PostButton>
+      )}
       <Footer />
     </Styled.Main>
   );

@@ -9,28 +9,43 @@ import {
 } from '../../../atoms/ThemeAtom';
 import { useSetRecoilState } from 'recoil';
 import ThemeMode from './ThemeMode';
-
-const menuList = [
-  {
-    text: 'Home',
-    url: 'home',
-  },
-  {
-    text: 'About Me',
-    url: 'about',
-  },
-  {
-    text: 'Login',
-    url: 'login',
-  },
-];
+import { memo } from 'react';
 
 function NavigationBar() {
   const [isMenuClick, onMenuClick, selectedMenu, onMenuItemClick] =
     useNavigationBar();
   const navigate = useNavigate();
   const setIsLight = useSetRecoilState(isLightThemeAtom);
-
+  const isLogin = window.sessionStorage.getItem('isLogin');
+  const menuList = isLogin
+    ? [
+        {
+          text: 'Home',
+          url: 'home',
+        },
+        {
+          text: 'About Me',
+          url: 'about',
+        },
+        {
+          text: 'Log out',
+          url: 'logout',
+        },
+      ]
+    : [
+        {
+          text: 'Home',
+          url: 'home',
+        },
+        {
+          text: 'About Me',
+          url: 'about',
+        },
+        {
+          text: 'Log in',
+          url: 'login',
+        },
+      ];
   return (
     <Styled.NavigationContainer>
       <Styled.Navigation>
@@ -81,4 +96,4 @@ function NavigationBar() {
   );
 }
 
-export default NavigationBar;
+export default memo(NavigationBar);

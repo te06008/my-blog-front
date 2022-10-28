@@ -66,10 +66,12 @@ const RelatedPosts = styled.div`
     color: #666;
     font-size: 15px;
     gap: 8px;
-    cursor: pointer;
-    @media (hover: hover) {
-      :hover {
-        text-decoration: underline;
+    .posts-item-text {
+      cursor: pointer;
+      @media (hover: hover) {
+        :hover {
+          text-decoration: underline;
+        }
       }
     }
     @media (max-width: 1024px) {

@@ -42,6 +42,9 @@ const CommentArea = styled.div`
         @media (max-width: 480px) {
           font-size: 13px;
         }
+        @media (max-width: 380px) {
+          padding-left: 5px;
+        }
       }
       input::-webkit-outer-spin-button,
       input::-webkit-inner-spin-button {
@@ -56,15 +59,27 @@ const CommentArea = styled.div`
         }
       }
       input[type='text'] {
-        width: 150px;
+        width: 180px;
         @media (max-width: 850px) {
-          max-width: 120px;
+          max-width: 140px;
         }
         @media (max-width: 480px) {
-          max-width: 100px;
+          max-width: 120px;
         }
         @media (max-width: 380px) {
-          max-width: 70px;
+          max-width: 110px;
+        }
+      }
+      input[type='password'] {
+        width: 120px;
+        @media (max-width: 850px) {
+          max-width: 100px;
+        }
+        @media (max-width: 480px) {
+          max-width: 80px;
+        }
+        @media (max-width: 380px) {
+          max-width: 50px;
         }
       }
       input[type='checkbox'] {

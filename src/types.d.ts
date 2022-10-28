@@ -1,3 +1,5 @@
+import { FooterDataModelInterface } from './models';
+
 export interface HeaderDataInterface {
   title: string;
   create_datetime: string;
@@ -7,6 +9,12 @@ export interface HeaderDataInterface {
 
 export interface BodyDataInterface {
   content: any;
+}
+
+export interface FooterDataInterface {
+  next: FooterDataModelInterface;
+  previous: FooterDataModelInterface;
+  related_posts: FooterDataModelInterface[];
 }
 
 export interface PreviewPresetInterface {

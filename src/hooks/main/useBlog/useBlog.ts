@@ -1,8 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import { getBlog } from '../../../libs/fetch';
 import getPreviewData from '../../../libs/getPreviewData';
-import { HeaderDataInterface, TOCList } from '../../../types';
+import {
+  FooterDataInterface,
+  HeaderDataInterface,
+  TOCList,
+} from '../../../types';
 
 function useBlog({ isPreview }: { isPreview: boolean }) {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [tocList, setTocList] = useState<TOCList[]>([]);
   const [headerData, setHeaderData] = useState<HeaderDataInterface>({
     title: '',
@@ -10,14 +17,46 @@ function useBlog({ isPreview }: { isPreview: boolean }) {
     update_datetime: '',
     tags: [],
   });
-  const [contentData, setContentData] = useState<any>('');
+  const [contentData, setContentData] = useState<string>('');
+  const [footerData, setFooterData] = useState<FooterDataInterface>({
+    next: {
+      id: -1,
+      title: '',
+    },
+    previous: {
+      id: -1,
+      title: '',
+    },
+    related_posts: [],
+  });
+  const { id } = useParams();
+
+  const fetchBlog = useCallback(async () => {
+    if (!id) return;
+    const [isSuccess, data, msg] = await getBlog(id);
+    if (isSuccess && data) {
+      setHeaderData({
+        title: data.title,
+        create_datetime: data.created_at,
+        update_datetime: data.updated_at,
+        tags: data.tags.replaceAll(' ', '').split(','),
+      });
+      setContentData(data.content);
+      setFooterData({
+        next: data.next,
+        previous: data.previous,
+        related_posts: data.related_posts,
+      });
+    } else {
+      alert(msg);
+    }
+    setIsLoading(false);
+  }, [id]);
 
   useEffect(() => {
     if (isPreview) {
       const previewData = getPreviewData();
-      const isoFormat = new Date().toISOString().replace('Z', '') + '000';
-      const offset = -(new Date().getTimezoneOffset() / 60);
-      const today = `${isoFormat}+0${offset}:00`;
+      const today = new Date().toISOString();
       setHeaderData({
         title: previewData.title,
         create_datetime: today,
@@ -25,16 +64,26 @@ function useBlog({ isPreview }: { isPreview: boolean }) {
         tags: previewData.tags,
       });
       setContentData(previewData.content);
+      setIsLoading(false);
     } else {
-      setContentData('## 아직 패칭로직을 구현하지 않았다...');
+      fetchBlog();
     }
-  }, [isPreview]);
+  }, [fetchBlog, isPreview]);
 
-  return [tocList, setTocList, headerData, contentData] as [
+  return [
+    tocList,
+    setTocList,
+    isLoading,
+    headerData,
+    contentData,
+    footerData,
+  ] as [
     typeof tocList,
     typeof setTocList,
+    typeof isLoading,
     typeof headerData,
     typeof contentData,
+    typeof footerData,
   ];
 }
 export default useBlog;

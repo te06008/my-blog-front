@@ -7,7 +7,7 @@ const MONTH = 30 * DAY;
 const YEAR = 365 * DAY;
 
 export default function getTimePassed(time: Date | string) {
-  const diff = (new Date(time).getTime() - new Date().getTime()) / 1000;
+  const diff = (new Date().getTime() - new Date(time).getTime()) / 1000;
   if (diff <= 5) {
     return '방금 전';
   } else if (diff <= MIN) {

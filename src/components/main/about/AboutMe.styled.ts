@@ -36,10 +36,11 @@ const IntroduceWrapper = styled.div`
     border-radius: 4px;
     @media (max-width: 1366px) {
       width: 400px;
-      height: auto;
+      max-height: 500px;
     }
     @media (max-width: 1024px) {
       width: 100%;
+      max-height: none;
       height: auto;
     }
   }

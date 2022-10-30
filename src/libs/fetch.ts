@@ -11,8 +11,8 @@ import certifiedAxios from './certifiedAxios';
 
 const errorMiddleware = (e: any) => {
   if (e?.response) {
-    if (e.response?.msg) {
-      return e.response.msg;
+    if (e.response?.data?.msg) {
+      return e.response.data.msg;
     }
     switch (e.response.status) {
       case 401:
@@ -68,6 +68,18 @@ export const postLogin = async ({
   }
 };
 
+export const logoutRequest = async (): Promise<[boolean, string?]> => {
+  try {
+    const fetchUrl = `${baseUrl}/admin/logout`;
+    await certifiedAxios.post(fetchUrl);
+    return [true];
+  } catch (e: any) {
+    const errMsg = errorMiddleware(e);
+    const responseMsg = errMsg ? errMsg : '요청중 에러가 발생하였습니다.';
+    return [false, responseMsg];
+  }
+};
+
 // 게시글 관련
 export const getPostList = async ({
   queryString,
@@ -105,13 +117,24 @@ export const getBlog = async (
 ): Promise<[boolean, BlogModel | null, string?]> => {
   try {
     const fetchUrl = `${baseUrl}/blog/${id}/`;
-    console.log(fetchUrl);
     const { data } = await axios.get(fetchUrl);
     return [true, data];
   } catch (e: any) {
     const errMsg = errorMiddleware(e);
     const responseMsg = errMsg ? errMsg : '해당 게시글이 존재하지 않습니다.';
     return [false, null, responseMsg];
+  }
+};
+
+export const deleteBlog = async (id: number): Promise<[boolean, string?]> => {
+  try {
+    const fetchUrl = `${baseUrl}/blog/${id}/`;
+    await certifiedAxios.delete(fetchUrl);
+    return [true];
+  } catch (e: any) {
+    const errMsg = errorMiddleware(e);
+    const responseMsg = errMsg ? errMsg : '요청중 에러가 발생하였습니다.';
+    return [false, responseMsg];
   }
 };
 
@@ -159,13 +182,10 @@ export const postComment = async ({
   }
 };
 
-export const deleteComment = async ({
-  commentId,
-  password,
-}: {
-  commentId: number;
-  password: string;
-}): Promise<[boolean, string?]> => {
+export const deleteComment = async (
+  commentId: number,
+  password: string,
+): Promise<[boolean, string?]> => {
   try {
     const fetchUrl = `${baseUrl}/comment/${commentId}/`;
     await axios.delete(fetchUrl, {

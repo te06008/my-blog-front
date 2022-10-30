@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { getBlog } from '../../../libs/fetch';
 import getPreviewData from '../../../libs/getPreviewData';
+import { tagParser } from '../../../libs/tagParser';
 import {
   FooterDataInterface,
   HeaderDataInterface,
@@ -39,7 +40,7 @@ function useBlog({ isPreview }: { isPreview: boolean }) {
         title: data.title,
         create_datetime: data.created_at,
         update_datetime: data.updated_at,
-        tags: data.tags.replaceAll(' ', '').split(','),
+        tags: tagParser(data.tags),
       });
       setContentData(data.content);
       setFooterData({

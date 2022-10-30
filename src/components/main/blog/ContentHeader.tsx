@@ -5,22 +5,38 @@ import getTimePassed from '../../../libs/getTimePassed';
 import { HeaderDataInterface } from '../../../types';
 import Styled from './ContentHeader.styled';
 import dayjs from 'dayjs';
+import getModifiedTime from '../../../libs/getModifiedTime';
 
 function ContentHeader({ data }: { data: HeaderDataInterface }) {
+  const isLogin = window.sessionStorage.getItem('isLogin') === 'true';
   return (
     <Styled.ContentHeader>
-      <div className="content-header-title">{data.title}</div>
-      {/* <div className="content-header-subtitle">카테고리 : 일상</div> */}
-      <div className="content-header-date">
-        <BiCalendar size="1.2em" className="content-header-icon" />
-        {'Posted on ' + dayjs(data.create_datetime).format('YYYY년 MM월 DD일')}
-        <div className="divider" />
-        <AiOutlineClockCircle size="1.2em" className="content-header-icon" />
-        {getTimePassed(data.update_datetime) + ' 수정됨'}
-      </div>
-      <div className="content-header-tags">
+      <Styled.HeaderWrapper>
+        <Styled.HeaderLeft>
+          <div className='content-header-title'>{data.title}</div>
+          {/* <div className="content-header-subtitle">카테고리 : 일상</div> */}
+          <div className='content-header-date'>
+            <BiCalendar size='1.2em' className='content-header-icon' />
+            {'Posted on ' +
+              dayjs(data.create_datetime).format('YYYY년 MM월 DD일')}
+            <div className='divider' />
+            <AiOutlineClockCircle
+              size='1.2em'
+              className='content-header-icon'
+            />
+            {getModifiedTime(data.create_datetime, data.update_datetime) ||
+              getTimePassed(data.update_datetime) + ' 수정됨'}
+          </div>
+        </Styled.HeaderLeft>
+        {isLogin && (
+          <Styled.HeaderRight>
+            <div className='header-right-text'>삭제</div>
+          </Styled.HeaderRight>
+        )}
+      </Styled.HeaderWrapper>
+      <div className='content-header-tags'>
         {data.tags.map((tag) => (
-          <div className="tag-text" key={tag}>{`#${tag}`}</div>
+          <div className='tag-text' key={tag}>{`#${tag}`}</div>
         ))}
       </div>
     </Styled.ContentHeader>

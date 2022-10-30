@@ -4,11 +4,33 @@ const ContentHeader = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px 0px;
-  gap: 20px;
   line-height: 1;
   width: 100%;
   border-bottom: 1px solid #ebebeb;
   justify-content: center;
+  gap: 20px;
+  .content-header-tags {
+    display: flex;
+    gap: 12px;
+    font-size: 14px;
+    .tag-text {
+      color: #ff5100;
+    }
+    @media (max-width: 480px) {
+      font-size: 12px;
+    }
+  }
+`;
+
+const HeaderWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const HeaderLeft = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   .content-header-title {
     color: #454545;
     font-size: 36px;
@@ -49,18 +71,20 @@ const ContentHeader = styled.div`
       margin-right: 2px;
     }
   }
-  .content-header-tags {
-    display: flex;
-    gap: 12px;
-    font-size: 14px;
-    .tag-text {
-      color: #ff5100;
-    }
-    @media (max-width: 480px) {
-      font-size: 12px;
+`;
+
+const HeaderRight = styled.div`
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  .header-right-text {
+    cursor: pointer;
+    color: #2b2b2b;
+    :hover {
+      text-decoration: underline;
     }
   }
 `;
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { ContentHeader };
+export default { ContentHeader, HeaderWrapper, HeaderLeft, HeaderRight };

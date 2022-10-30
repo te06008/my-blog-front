@@ -1,7 +1,6 @@
 import Styled from './NavigationBar.styled';
 import { AiOutlineMenu } from 'react-icons/ai';
 import useNavigationBar from '../../../hooks/main/useNavigationBar/useNavigationBar';
-import { useNavigate } from 'react-router';
 import {
   DARK,
   isOsLightThemeAtom as isLightThemeAtom,
@@ -14,9 +13,8 @@ import { memo } from 'react';
 function NavigationBar() {
   const [isMenuClick, onMenuClick, selectedMenu, onMenuItemClick] =
     useNavigationBar();
-  const navigate = useNavigate();
   const setIsLight = useSetRecoilState(isLightThemeAtom);
-  const isLogin = window.sessionStorage.getItem('isLogin');
+  const isLogin = window.sessionStorage.getItem('isLogin') === 'true';
   const menuList = isLogin
     ? [
         {
@@ -67,15 +65,15 @@ function NavigationBar() {
             <Styled.NavigationMenuItem
               selected={selectedMenu === item.url}
               key={item.url}
-              onClick={() => navigate(`/${item.url}`)}
+              onClick={() => onMenuItemClick(item.url)}
             >
               {item.text}
             </Styled.NavigationMenuItem>
           ))}
           <AiOutlineMenu
             onClick={onMenuClick}
-            className="menu-icon"
-            size="1.4em"
+            className='menu-icon'
+            size='1.4em'
           />
         </Styled.NavigationMenu>
       </Styled.Navigation>

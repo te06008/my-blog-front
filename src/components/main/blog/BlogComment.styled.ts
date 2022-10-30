@@ -97,13 +97,12 @@ const CommentItem = styled.div`
     }
   }
   .comment-item-body {
+    white-space: pre-wrap;
+    word-break: keep-all;
     padding: 0px 4px;
     font-size: 18px;
     color: #212529;
     line-height: 1.7;
-    //white-space: pre-wrap;
-    word-break: keep-all;
-    overflow-wrap: break-word;
     transition: color 0.125s ease-in 0s;
     @media (max-width: 1024px) {
       font-size: 16px;

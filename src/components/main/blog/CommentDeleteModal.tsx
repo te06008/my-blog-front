@@ -2,57 +2,62 @@ import { memo } from 'react';
 import useCommentDeleteModal from '../../../hooks/main/useBlog/useCommentDeleteModal';
 import Styled from './CommentDeleteModal.styled';
 
-function CommentDeleteModal() {
+const passwordArray = [0, 1, 2, 3];
+
+function CommentDeleteModal({
+  onClose,
+  onConfirm,
+}: {
+  onClose: () => void;
+  onConfirm: (password: string) => Promise<void>;
+}) {
   const [
-    firstRef,
-    secondRef,
-    thirdRef,
-    fourthRef,
-    onFirstKeyUp,
-    onSecondKeyUp,
-    onThridKeyUp,
+    pwRef,
+    pwValue,
+    onKeyDown,
+    closeRef,
+    submitRef,
+    onModalKeyUp,
+    onSubmit,
   ] = useCommentDeleteModal();
 
   return (
-    <Styled.CommentDeleteModal>
+    <Styled.CommentDeleteModal onKeyUp={onModalKeyUp}>
       <Styled.ModalBody>
-        <div className="title">댓글 삭제</div>
-        <div className="description">
-          삭제할 비밀번호 4자리를 입력해 주세요.
+        <div className='title'>댓글 삭제</div>
+        <div className='description'>
+          댓글 비밀번호 4자리를 입력해 주세요.
+          <br />
+          (Backspace키를 누르면 초기화됩니다)
         </div>
+
         <Styled.InputWrapper>
-          <input
-            onKeyUp={onFirstKeyUp}
-            ref={firstRef}
-            autoComplete="new-password"
-            type="password"
-            maxLength={1}
-          />
-          <input
-            onKeyUp={onSecondKeyUp}
-            ref={secondRef}
-            autoComplete="new-password"
-            type="password"
-            maxLength={1}
-          />
-          <input
-            ref={thirdRef}
-            onKeyUp={onThridKeyUp}
-            autoComplete="new-password"
-            type="password"
-            maxLength={1}
-          />
-          <input
-            ref={fourthRef}
-            autoComplete="new-password"
-            type="password"
-            maxLength={1}
-          />
+          {passwordArray.map((item, idx) => (
+            <input
+              onKeyDown={onKeyDown}
+              ref={(element) => {
+                pwRef.current[idx] = element;
+              }}
+              key={item}
+              value={pwValue[idx]}
+              autoComplete='new-password'
+              type='password'
+              maxLength={1}
+            />
+          ))}
         </Styled.InputWrapper>
       </Styled.ModalBody>
       <Styled.ModalFooter>
-        <button className="close-btn">취소</button>
-        <button className="submit-btn">확인</button>
+        <button className='close-btn' onClick={onClose} ref={closeRef}>
+          취소
+        </button>
+        <button
+          className='submit-btn'
+          onClick={() => onSubmit(onConfirm)}
+          ref={submitRef}
+        >
+          확인
+        </button>
       </Styled.ModalFooter>
     </Styled.CommentDeleteModal>
   );

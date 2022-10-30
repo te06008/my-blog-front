@@ -8,7 +8,7 @@ import Footer from './footer/Footer';
 function Main() {
   const [scrollBtnRef, moveToTop] = useScrollToggle();
   const navigate = useNavigate();
-  const isLogin = window.sessionStorage.getItem('isLogin');
+  const isLogin = window.sessionStorage.getItem('isLogin') === 'true';
   return (
     <Styled.Main>
       <NavigationBar />

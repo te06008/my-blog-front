@@ -5,15 +5,13 @@ const CommentDeleteModal = styled.div`
   top: 50%;
   left: 50%;
 
-  width: 20vw;
-
   padding: 40px;
 
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
   box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
 
-  transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-90%);
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -30,6 +28,7 @@ const ModalBody = styled.div`
   .description {
     font-size: 16px;
     text-align: center;
+    line-height: 1.2;
   }
   gap: 20px;
 `;
@@ -58,6 +57,10 @@ const ModalFooter = styled.div`
     border: none;
     border-radius: 4px;
     font-size: 16px;
+    :hover {
+      opacity: 0.8;
+    }
+    line-height: 1.2;
   }
   .close-btn {
     background-color: #db4455;

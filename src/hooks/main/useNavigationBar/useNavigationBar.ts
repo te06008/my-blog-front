@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
+import { logoutRequest } from '../../../libs/fetch';
 
 function useNavigationBar() {
   const [isMenuClicked, setIsMenuClicked] = useState<boolean>(false);
@@ -10,10 +11,27 @@ function useNavigationBar() {
     setIsMenuClicked(!isMenuClicked);
   };
 
-  const onMenuItemClick = (url: string) => {
-    setIsMenuClicked(false);
-    navigate(url);
+  const fetchLogout = async () => {
+    const [isSuccess, msg] = await logoutRequest();
+    window.sessionStorage.removeItem('isLogin');
+    window.location.reload();
   };
+
+  const onMenuItemClick = (url: string) => {
+    switch (url) {
+      case 'logout':
+        fetchLogout();
+        break;
+      default:
+        setIsMenuClicked(false);
+        navigate(url);
+        break;
+    }
+  };
+
+  useEffect(() => {
+    window.sessionStorage.setItem('isPrevious', 'true');
+  }, []);
 
   return [isMenuClicked, onMenuClick, selectedMenu, onMenuItemClick] as [
     typeof isMenuClicked,

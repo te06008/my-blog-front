@@ -7,44 +7,56 @@ import Modal from '../../common/Modal';
 import CommentDeleteModal from './CommentDeleteModal';
 
 function BlogComment() {
-  const [commentList, refetchCommentList, isModalOpen, onModalOpen] =
-    useBlogComment();
+  const [
+    commentList,
+    refetchCommentList,
+    isModalOpen,
+    onModalOpen,
+    onModalClose,
+    onDeleteComment,
+  ] = useBlogComment();
   return (
     <Styled.BlogComment>
       <CommentFormArea
         count={commentList.length}
         refetch={refetchCommentList}
       />
-      {commentList.length > 0 && (
-        <Styled.CommentList>
-          {commentList.map((comment) => (
+
+      <Styled.CommentList>
+        {commentList.length > 0 &&
+          commentList.map((comment, index) => (
             <Styled.CommentItem key={comment.id}>
-              <div className="comment-item-header">
-                <div className="comment-item-wrapper">
-                  <IoPersonCircleSharp size="3em" className="person-icon" />
-                  <div className="header-text">
-                    <div className="username">
+              <div className='comment-item-header'>
+                <div className='comment-item-wrapper'>
+                  <IoPersonCircleSharp size='3em' className='person-icon' />
+                  <div className='header-text'>
+                    <div className='username'>
                       {comment.nickname || 'Anonymous User'}
                     </div>
-                    <div className="date">
+                    <div className='date'>
                       {dayjs(comment.created_at).format(
                         'YYYY년 MM월 DD일 a hh:mm',
                       )}
                     </div>
                   </div>
                 </div>
-                <div className="header-delete-btn" onClick={onModalOpen}>
+                <div
+                  className='header-delete-btn'
+                  onClick={() => onModalOpen(comment.id)}
+                >
                   삭제
                 </div>
               </div>
-              <p className="comment-item-body">{comment.comment}</p>
+              <pre className='comment-item-body'>{comment.comment}</pre>
             </Styled.CommentItem>
           ))}
-        </Styled.CommentList>
-      )}
+      </Styled.CommentList>
       {isModalOpen && (
         <Modal>
-          <CommentDeleteModal />
+          <CommentDeleteModal
+            onClose={onModalClose}
+            onConfirm={onDeleteComment}
+          />
         </Modal>
       )}
     </Styled.BlogComment>

@@ -20,6 +20,11 @@ const ContentBody = styled.div`
     font-size: 1.5rem;
     font-weight: 500;
   }
+  img {
+    max-height: 600px;
+    width: 100%;
+    object-fit: cover;
+  }
   @media (max-width: 768px) {
     * {
       font-size: 16px;

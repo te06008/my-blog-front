@@ -33,8 +33,12 @@ const SearchBar = styled.div`
     height: 100%;
     border: none;
     background-color: transparent;
+    color: ${(p) => p.theme.color.searchBar};
     :focus {
       outline: none;
+    }
+    ::placeholder {
+      color: ${(p) => p.theme.color.placeholder};
     }
   }
 `;
@@ -57,15 +61,15 @@ const CategoryMenu = styled.div`
     }
   }
   .categorymenu-text {
-    color: #454545;
+    color: ${(p) => p.theme.color.categoryMenu};
     font-size: 14px;
   }
   .categorymenu-number {
     display: inline-block;
     font-size: 11px;
     border-radius: 10px;
-    color: #fdfdfd;
-    background: #000000bd;
+    color: ${(p) => p.theme.color.categoryCard};
+    background: ${(p) => p.theme.backgroundColor.categoryCard};
     padding: 0px 8px;
     align-self: center;
     line-height: 1.6;

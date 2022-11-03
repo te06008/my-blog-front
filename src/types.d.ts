@@ -44,3 +44,7 @@ export interface BlogData {
   content: string;
   tags: string;
 }
+
+interface ListInterface {
+  isEnd: boolean;
+}

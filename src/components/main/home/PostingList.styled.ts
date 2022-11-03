@@ -38,6 +38,7 @@ const PostingListHeader = styled.div`
     flex-direction: column;
   }
   .header-title {
+    color: ${(p) => p.theme.color.category};
     width: auto;
     font-size: 28px;
     @media (max-width: 1024px) {
@@ -57,8 +58,8 @@ const SelectedCategory = styled.div`
   position: relative;
   padding: 10px;
   font-size: 24px;
-  color: #ffffff;
-  background-color: #6c757d;
+  color: ${(p) => p.theme.color.categorySelect};
+  background-color: ${(p) => p.theme.backgroundColor.categorySelect};
   border-radius: 5px;
   @media (max-width: 1024px) {
     font-size: 20px;

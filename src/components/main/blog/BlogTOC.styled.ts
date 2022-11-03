@@ -18,7 +18,7 @@ const TOC = styled.div`
   .toc-title {
     font-size: 21px;
     font-weight: 600;
-    color: #222;
+    color: ${(p) => p.theme.color.tocTitle};
   }
   @media (max-width: 1366px) {
     display: none;
@@ -36,7 +36,7 @@ const TOCItem = styled.a<TOCItemInterface>`
   padding: 2px 8px;
   padding-left: ${(p) => (p.isSub ? '28px' : '12px')};
   font-size: 16px;
-  color: #2a2a2a;
+  color: ${(p) => p.theme.color.tocText};
   cursor: pointer;
   text-decoration: none;
   @media (hover: hover) {

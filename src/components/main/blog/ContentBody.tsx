@@ -1,4 +1,5 @@
 import '@toast-ui/editor/dist/toastui-editor-viewer.css';
+import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
 import { Viewer } from '@toast-ui/react-editor';
 import useContentBody from '../../../hooks/main/useBlog/useContentBody';
 import { TOCList } from '../../../types';
@@ -27,15 +28,17 @@ function ContentBody({
   data,
   setTocList,
 }: {
-  data: any;
+  data: string;
   setTocList: React.Dispatch<React.SetStateAction<TOCList[]>>;
 }) {
-  const [contentRef] = useContentBody({ setTocList });
+  const [contentRef, isLightTheme] = useContentBody({ setTocList });
+  console.log(data);
   return (
     <Styled.ContentBody ref={contentRef}>
       <Viewer
         initialValue={data}
         plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
+        theme={isLightTheme ? 'light' : 'dark'}
       />
     </Styled.ContentBody>
   );

@@ -22,8 +22,8 @@ function Posts({
   const [targetElement] = usePosts({ scrollCallback });
   return (
     <Styled.Posts>
-      {data.map((post) => (
-        <Styled.PostWrapper key={post.id}>
+      {data.map((post, key) => (
+        <Styled.PostWrapper key={post.id} isEnd={data.length - 1 === key}>
           <Styled.PostHeader>
             <div
               className="post-header-title"

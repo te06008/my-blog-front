@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ListInterface } from '../../../types';
 
 const Posts = styled.div`
   display: flex;
@@ -16,11 +17,11 @@ const Posts = styled.div`
   }
 `;
 
-const PostWrapper = styled.div`
+const PostWrapper = styled.div<ListInterface>`
   display: flex;
   flex-direction: column;
   gap: 18px;
-  border-bottom: 1px solid #e3e3e3;
+  border-bottom: ${(p) => (p.isEnd ? 'none' : '1px solid #e3e3e3')};
   padding-bottom: 30px;
 `;
 
@@ -31,7 +32,7 @@ const PostHeader = styled.div`
   .post-header-title {
     font-size: 23px;
     font-weight: 600;
-    color: #333;
+    color: ${(p) => p.theme.color.postTitle};
     cursor: pointer;
     @media (max-width: 768px) {
       font-size: 20px;
@@ -43,7 +44,7 @@ const PostHeader = styled.div`
   .post-header-date {
     display: flex;
     font-size: 14px;
-    color: #828282;
+    color: ${(p) => p.theme.color.postDate};
     align-items: center;
     @media (max-width: 480px) {
       font-size: 12px;
@@ -64,7 +65,7 @@ const PostHeader = styled.div`
 const PostBody = styled.div`
   max-width: 100%;
   word-break: break-word;
-  color: #777;
+  color: ${(p) => p.theme.color.postContent};
   font-size: 14px;
   line-height: 1.6;
   cursor: pointer;
@@ -87,8 +88,8 @@ const PostCategory = styled.div`
   }
   .category-decoration {
     padding: 4px;
-    color: #ff5100;
-    border: 1px solid #ff5100;
+    color: ${(p) => p.theme.color.postTag};
+    border: ${(p) => `1px solid ${p.theme.color.postTag}`};
     border-radius: 2px;
     @media {
       :hover {

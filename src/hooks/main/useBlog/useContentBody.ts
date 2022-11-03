@@ -1,4 +1,6 @@
 import { useEffect, useRef } from 'react';
+import { useRecoilValue } from 'recoil';
+import { isOsLightThemeAtom } from '../../../atoms/ThemeAtom';
 import { TOCList } from '../../../types';
 
 function useContentBody({
@@ -6,6 +8,7 @@ function useContentBody({
 }: {
   setTocList: React.Dispatch<React.SetStateAction<TOCList[]>>;
 }) {
+  const isLightTheme = useRecoilValue(isOsLightThemeAtom);
   const contentRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!contentRef.current) {
@@ -29,7 +32,7 @@ function useContentBody({
     }
   }, [setTocList]);
 
-  return [contentRef] as [typeof contentRef];
+  return [contentRef, isLightTheme] as [typeof contentRef, typeof isLightTheme];
 }
 
 export default useContentBody;

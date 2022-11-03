@@ -78,6 +78,7 @@ function useBlog({ isPreview }: { isPreview: boolean }) {
     headerData,
     contentData,
     footerData,
+    setIsLoading,
   ] as [
     typeof tocList,
     typeof setTocList,
@@ -85,6 +86,7 @@ function useBlog({ isPreview }: { isPreview: boolean }) {
     typeof headerData,
     typeof contentData,
     typeof footerData,
+    typeof setIsLoading,
   ];
 }
 export default useBlog;

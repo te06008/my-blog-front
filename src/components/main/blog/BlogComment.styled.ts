@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ListInterface } from '../../../types';
 
 const BlogComment = styled.div`
   display: flex;
@@ -15,12 +16,12 @@ const CommentList = styled.div`
   flex-direction: column;
 `;
 
-const CommentItem = styled.div`
+const CommentItem = styled.div<ListInterface>`
   display: flex;
   flex-direction: column;
   gap: 18px;
   padding: 36px 0px;
-  border-bottom: 1px solid #ebebeb;
+  border-bottom: ${(p) => (p.isEnd ? 'none' : '1px solid #ebebeb')};
   @media (max-width: 768px) {
     gap: 14px;
   }
@@ -54,7 +55,7 @@ const CommentItem = styled.div`
           margin-top: 3px;
         }
         .username {
-          color: #212529;
+          color: ${(p) => p.theme.commentCount};
           font-weight: 500;
           @media (max-width: 768px) {
             font-size: 15px;
@@ -64,7 +65,7 @@ const CommentItem = styled.div`
           }
         }
         .date {
-          color: #868e96;
+          color: ${(p) => p.theme.color.commentDate};
           font-size: 14px;
           font-weight: 300;
           @media (max-width: 768px) {
@@ -79,7 +80,7 @@ const CommentItem = styled.div`
     .header-delete-btn {
       margin-top: 16px;
       font-size: 15px;
-      color: #2b2b2b;
+      color: ${(p) => p.theme.color.blogEditText};
       cursor: pointer;
       @media (hover: hover) {
         :hover {
@@ -101,7 +102,7 @@ const CommentItem = styled.div`
     word-break: keep-all;
     padding: 0px 4px;
     font-size: 18px;
-    color: #212529;
+    color: ${(p) => p.theme.color.commentCount};
     line-height: 1.7;
     transition: color 0.125s ease-in 0s;
     @media (max-width: 1024px) {

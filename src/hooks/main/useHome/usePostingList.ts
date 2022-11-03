@@ -62,7 +62,7 @@ function usePostingList() {
   };
 
   const getSlicedContent = (list: PostingListModel[]): PostingListModel[] => {
-    const regExp = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
+    const regExp = /[a-z0-9]|[\[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
     return list.map((item) => {
       return {
         ...item,

@@ -5,7 +5,7 @@ const CommentArea = styled.div`
   flex-direction: column;
   gap: 16px;
   .text-count {
-    color: #212529;
+    color: ${(p) => p.theme.color.commentCount};
     font-size: 18px;
     @media (max-width: 768px) {
       font-size: 16px;
@@ -58,6 +58,13 @@ const CommentArea = styled.div`
           font-size: 14px;
         }
       }
+      input {
+        color: ${(p) => p.theme.color.input};
+        background-color: transparent;
+        ::placeholder {
+          color: ${(p) => p.theme.color.input};
+        }
+      }
       input[type='text'] {
         width: 180px;
         @media (max-width: 850px) {
@@ -99,6 +106,11 @@ const CommentArea = styled.div`
     }
   }
   textarea {
+    color: ${(p) => p.theme.color.input};
+    background-color: transparent;
+    ::placeholder {
+      color: ${(p) => p.theme.color.input};
+    }
     resize: none;
     font-size: 15px;
     padding: 1rem 1rem 1.5rem;

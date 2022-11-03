@@ -27,7 +27,7 @@ const NavigatorItem = styled.div<NavigatorItemInterface>`
   align-items: center;
   cursor: pointer;
   visibility: ${(props) => (props.isVisible ? 'visible' : 'hidden')};
-  color: #666;
+  color: ${(p) => p.theme.color.blogNav};
   .navigator-item-text {
     font-size: 16px;
     @media (hover: hover) {
@@ -49,7 +49,7 @@ const RelatedPosts = styled.div`
   flex-direction: column;
   gap: 4px;
   .posts-title {
-    color: #333;
+    color: ${(p) => p.theme.color.relatedPostTitle};
     font-size: 20px;
     margin-bottom: 16px;
     @media (max-width: 1024px) {
@@ -63,7 +63,7 @@ const RelatedPosts = styled.div`
     line-height: 1.6;
     display: flex;
     align-items: center;
-    color: #666;
+    color: ${(p) => p.theme.color.relatedPostText};
     font-size: 15px;
     gap: 8px;
     .posts-item-text {

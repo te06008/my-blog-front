@@ -6,15 +6,17 @@ import {
   isOsLightThemeAtom as isLightThemeAtom,
   LIGHT,
 } from '../../../atoms/ThemeAtom';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import ThemeMode from './ThemeMode';
 import { memo } from 'react';
+import { useLocation } from 'react-router';
 
 function NavigationBar() {
   const [isMenuClick, onMenuClick, selectedMenu, onMenuItemClick] =
     useNavigationBar();
-  const setIsLight = useSetRecoilState(isLightThemeAtom);
+  const [isLight, setIsLight] = useRecoilState(isLightThemeAtom);
   const isLogin = window.sessionStorage.getItem('isLogin') === 'true';
+  const location = useLocation();
   const menuList = isLogin
     ? [
         {
@@ -53,6 +55,19 @@ function NavigationBar() {
         <Styled.NavigationMenu>
           <div
             onClick={() => {
+              const isBlog = location.pathname.split('/')[1] === 'blog';
+              if (isBlog) {
+                if (
+                  window.confirm(
+                    '이 페이지 새로고침 후에 테마가 적용됩니다. 새로고침 하시겠습니까?',
+                  )
+                ) {
+                  const nextMode = isLight ? 'DARK' : 'LIGHT';
+                  localStorage.setItem('theme', nextMode);
+                  window.location.reload();
+                }
+                return;
+              }
               setIsLight((s) => {
                 localStorage.setItem('theme', !s ? LIGHT : DARK);
                 return !s;

@@ -10,10 +10,17 @@ import ContentBody from './ContentBody';
 import ContentHeader from './ContentHeader';
 
 function Blog({ isPreview, ...rest }: { isPreview: boolean }) {
-  const [tocList, setTocList, isLoading, headerData, contentData, footerData] =
-    useBlog({
-      isPreview,
-    });
+  const [
+    tocList,
+    setTocList,
+    isLoading,
+    headerData,
+    contentData,
+    footerData,
+    setIsLoading,
+  ] = useBlog({
+    isPreview,
+  });
   return (
     <Styled.Blog>
       <Helmet>
@@ -28,7 +35,9 @@ function Blog({ isPreview, ...rest }: { isPreview: boolean }) {
             </Styled.BlogContent>
             <BlogTOC tocList={tocList} />
           </Styled.BlogWrapper>
-          {!isPreview && <BlogFooter data={footerData} />}
+          {!isPreview && (
+            <BlogFooter data={footerData} setIsLoading={setIsLoading} />
+          )}
           {!isPreview && <BlogComment />}
         </>
       ) : (

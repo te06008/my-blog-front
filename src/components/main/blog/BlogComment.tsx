@@ -25,15 +25,18 @@ function BlogComment() {
       <Styled.CommentList>
         {commentList.length > 0 &&
           commentList.map((comment, index) => (
-            <Styled.CommentItem key={comment.id}>
-              <div className='comment-item-header'>
-                <div className='comment-item-wrapper'>
-                  <IoPersonCircleSharp size='3em' className='person-icon' />
-                  <div className='header-text'>
-                    <div className='username'>
+            <Styled.CommentItem
+              key={comment.id}
+              isEnd={commentList.length - 1 === index}
+            >
+              <div className="comment-item-header">
+                <div className="comment-item-wrapper">
+                  <IoPersonCircleSharp size="3em" className="person-icon" />
+                  <div className="header-text">
+                    <div className="username">
                       {comment.nickname || 'Anonymous User'}
                     </div>
-                    <div className='date'>
+                    <div className="date">
                       {dayjs(comment.created_at).format(
                         'YYYY년 MM월 DD일 a hh:mm',
                       )}
@@ -41,13 +44,13 @@ function BlogComment() {
                   </div>
                 </div>
                 <div
-                  className='header-delete-btn'
+                  className="header-delete-btn"
                   onClick={() => onModalOpen(comment.id)}
                 >
                   삭제
                 </div>
               </div>
-              <pre className='comment-item-body'>{comment.comment}</pre>
+              <pre className="comment-item-body">{comment.comment}</pre>
             </Styled.CommentItem>
           ))}
       </Styled.CommentList>

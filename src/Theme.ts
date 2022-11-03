@@ -6,6 +6,29 @@ export interface ThemeInterface {
     gray: string;
 
     dashboardBorder: string;
+
+    navBar: string;
+    banner: string;
+    category: string;
+    categorySelect: string;
+    searchBar: string;
+    placeholder: string;
+    categoryMenu: string;
+    categoryCard: string;
+    postTitle: string;
+    postDate: string;
+    postContent: string;
+    postTag: string;
+    blogTitle: string;
+    blogEditText: string;
+    tocTitle: string;
+    tocText: string;
+    blogNav: string;
+    relatedPostTitle: string;
+    relatedPostText: string;
+    commentCount: string;
+    input: string;
+    commentDate: string;
   };
   backgroundColor: {
     default: string;
@@ -26,9 +49,13 @@ export interface ThemeInterface {
     unreadAlarm: string;
 
     hover: string;
-
     // modal: string;
     bottomModal: string;
+
+    ///
+    navBar: string;
+    categorySelect: string;
+    categoryCard: string;
   };
 }
 
@@ -40,6 +67,28 @@ const lightTheme: ThemeInterface = {
     gray: 'gray',
 
     dashboardBorder: '#cbcbcb',
+    navBar: '#ffffff',
+    banner: '#3c3c3c',
+    category: '#333',
+    categorySelect: '#fff',
+    searchBar: '#2b2b2b',
+    placeholder: 'gray',
+    categoryMenu: '#454545',
+    categoryCard: '#fdfdfd',
+    postTitle: '#333',
+    postDate: '#828282',
+    postContent: '#777',
+    postTag: '#ff5100',
+    blogTitle: '#454545',
+    blogEditText: '#2b2b2b',
+    tocTitle: '#222',
+    tocText: '#2a2a2a',
+    blogNav: '#666',
+    relatedPostTitle: '#333',
+    relatedPostText: '#666',
+    commentCount: '#212529',
+    input: '#2b2b2b',
+    commentDate: '#868e96',
   },
   backgroundColor: {
     default: '#ffffff',
@@ -60,6 +109,11 @@ const lightTheme: ThemeInterface = {
 
     hover: '#eaeaea',
     bottomModal: '#ffffff',
+
+    ///
+    navBar: 'darkgray',
+    categorySelect: 'darkgray',
+    categoryCard: '#000000bd',
   },
 };
 
@@ -71,6 +125,28 @@ const darkTheme: ThemeInterface = {
     gray: '#b9b9b9',
 
     dashboardBorder: '#606060',
+    navBar: '#eeeeee',
+    banner: '#4c4c4c',
+    category: '#ddd',
+    categorySelect: '#ddd',
+    searchBar: '#ddd',
+    placeholder: 'darkgray',
+    categoryMenu: '#bbb',
+    categoryCard: '#ddd',
+    postTitle: '#ccc',
+    postDate: '#bbb',
+    postContent: '#aaa',
+    postTag: 'rgba(255, 81, 0, 0.8)',
+    blogTitle: '#ccc',
+    blogEditText: '#ccc',
+    tocTitle: '#ddd',
+    tocText: '#ccc',
+    blogNav: '#ddd',
+    relatedPostTitle: '#ddd',
+    relatedPostText: '#ccc',
+    commentCount: '#eee',
+    input: '#ccc',
+    commentDate: '#ddd',
   },
   backgroundColor: {
     default: '#2a2a2a',
@@ -92,6 +168,11 @@ const darkTheme: ThemeInterface = {
 
     hover: '#363636',
     bottomModal: '#3a3535',
+
+    ///
+    navBar: 'gray',
+    categorySelect: 'gray',
+    categoryCard: '#444',
   },
 };
 

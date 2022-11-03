@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 const ContentBody = styled.div`
   //min-height: 100vh;
+  span {
+    background-color: transparent !important;
+  }
   h1,
   h2 {
     border: none;

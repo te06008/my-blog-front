@@ -8,8 +8,8 @@ const NavigationContainer = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 100vw;
-  background-color: darkgray;
-  color: #ffffff;
+  background-color: ${(p) => p.theme.backgroundColor.navBar};
+  color: ${(p) => p.theme.color.navBar};
 `;
 
 const Navigation = styled.div`

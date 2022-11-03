@@ -14,7 +14,7 @@ const ContentHeader = styled.div`
     gap: 12px;
     font-size: 14px;
     .tag-text {
-      color: #ff5100;
+      color: ${(p) => p.theme.color.postTag};
     }
     @media (max-width: 480px) {
       font-size: 12px;
@@ -32,7 +32,7 @@ const HeaderLeft = styled.div`
   flex-direction: column;
   gap: 20px;
   .content-header-title {
-    color: #454545;
+    color: ${(p) => p.theme.color.blogTitle};
     font-size: 36px;
     font-weight: 600;
     letter-spacing: -1px;
@@ -56,7 +56,7 @@ const HeaderLeft = styled.div`
   .content-header-date {
     display: flex;
     font-size: 14px;
-    color: #828282;
+    color: ${(p) => p.theme.postDate};
     align-items: center;
     @media (max-width: 480px) {
       font-size: 12px;
@@ -79,7 +79,7 @@ const HeaderRight = styled.div`
   align-items: center;
   .header-right-text {
     cursor: pointer;
-    color: #2b2b2b;
+    color: ${(p) => p.theme.color.blogEditText};
     :hover {
       text-decoration: underline;
     }

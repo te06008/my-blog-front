@@ -26,7 +26,7 @@ const HomeBanner = styled.div`
 
 const HomeBannerText = styled.div`
   position: absolute;
-  color: #4c4c4c;
+  color: ${(p) => p.theme.color.banner};
   top: 45vh;
   left: 300px;
   @media (max-width: 1600px) {

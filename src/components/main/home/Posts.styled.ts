@@ -32,7 +32,7 @@ const PostHeader = styled.div`
     font-size: 23px;
     font-weight: 600;
     color: #333;
-    //cursor: pointer;
+    cursor: pointer;
     @media (max-width: 768px) {
       font-size: 20px;
     }

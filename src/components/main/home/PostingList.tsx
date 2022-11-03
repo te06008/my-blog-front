@@ -11,6 +11,7 @@ function PostingList() {
     isLoading,
     postList,
     scrollCallback,
+    onQueryChange,
   ] = usePostingList();
   console.log(postList);
   return (
@@ -27,7 +28,10 @@ function PostingList() {
       </Styled.PostingListHeader>
       <Styled.PostingListBody>
         <Posts data={postList} scrollCallback={scrollCallback} />
-        <SideBar onCategoryClick={onCategoryClick} />
+        <SideBar
+          onCategoryClick={onCategoryClick}
+          onQueryChange={onQueryChange}
+        />
       </Styled.PostingListBody>
     </Styled.PostingList>
   );

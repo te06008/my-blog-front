@@ -33,16 +33,18 @@ const errorMiddleware = (e: any) => {
 
 // 로그인 관련
 export const getCertificaiton = async ({
-  id,
+  username,
 }: {
-  id: string;
+  username: string;
 }): Promise<[boolean, CertificationModel | null, string?]> => {
   try {
-    const fetchUrl = `${baseUrl}/user/?username=${id}`;
+    const fetchUrl = `${baseUrl}/user/?username=${username}`;
     const { data } = await certifiedAxios.get(fetchUrl);
     return [true, data[0]];
   } catch (e: any) {
-    return [false, null, '요청중 에러가 발생하였습니다.'];
+    const errMsg = errorMiddleware(e);
+    const responseMsg = errMsg ? errMsg : '요청중 에러가 발생하였습니다.';
+    return [false, null, responseMsg];
   }
 };
 
@@ -64,7 +66,9 @@ export const postLogin = async ({
     });
     return [true, data];
   } catch (e: any) {
-    return [false, '', '요청중 에러가 발생하였습니다.'];
+    const errMsg = errorMiddleware(e);
+    const responseMsg = errMsg ? errMsg : '요청중 에러가 발생하였습니다.';
+    return [false, responseMsg];
   }
 };
 
@@ -106,8 +110,57 @@ export const getCategoryList = async (): Promise<
     return [true, data.data];
   } catch (e: any) {
     const errMsg = errorMiddleware(e);
-    const responseMsg = errMsg ? errMsg : '요청중 에러가 발생하였습니다.';
+    const responseMsg = errMsg
+      ? errMsg
+      : '카테고리 목록 요청중 에러가 발생하였습니다.';
     return [false, [], responseMsg];
+  }
+};
+
+export const postCategory = async (
+  categoryName: string,
+): Promise<[boolean, string?]> => {
+  try {
+    const fetchUrl = `${baseUrl}/category/`;
+    await certifiedAxios.post(fetchUrl, {
+      category_name: categoryName,
+    });
+    return [true];
+  } catch (e: any) {
+    const errMsg = errorMiddleware(e);
+    const responseMsg = errMsg ? errMsg : '요청중 에러가 발생하였습니다.';
+    return [false, responseMsg];
+  }
+};
+
+export const putCategory = async (
+  categoryId: string,
+  categoryName: string,
+): Promise<[boolean, string?]> => {
+  try {
+    const fetchUrl = `${baseUrl}/category/${categoryId}/`;
+    await certifiedAxios.put(fetchUrl, {
+      category_name: categoryName,
+    });
+    return [true];
+  } catch (e: any) {
+    const errMsg = errorMiddleware(e);
+    const responseMsg = errMsg ? errMsg : '요청중 에러가 발생하였습니다.';
+    return [false, responseMsg];
+  }
+};
+
+export const deleteCategory = async (
+  categoryId: string,
+): Promise<[boolean, string?]> => {
+  try {
+    const fetchUrl = `${baseUrl}/category/${categoryId}/`;
+    await certifiedAxios.delete(fetchUrl);
+    return [true];
+  } catch (e: any) {
+    const errMsg = errorMiddleware(e);
+    const responseMsg = errMsg ? errMsg : '요청중 에러가 발생하였습니다.';
+    return [false, responseMsg];
   }
 };
 
@@ -126,14 +179,70 @@ export const getBlog = async (
   }
 };
 
-export const deleteBlog = async (id: number): Promise<[boolean, string?]> => {
+export const postBlog = async ({
+  title,
+  content,
+  category,
+  tag,
+}: {
+  title: string;
+  content: string;
+  category: string;
+  tag: string;
+}): Promise<[boolean, string?]> => {
+  try {
+    const fetchUrl = `${baseUrl}/blog/`;
+    await certifiedAxios.post(fetchUrl, {
+      title,
+      content,
+      category_id: category,
+      tags: tag,
+    });
+    return [true];
+  } catch (e: any) {
+    const errMsg = errorMiddleware(e);
+    const responseMsg = errMsg ? errMsg : '요청중 에러가 발생하였습니다.';
+    return [false, responseMsg];
+  }
+};
+
+export const putBlog = async ({
+  id,
+  title,
+  content,
+  category,
+  tag,
+}: {
+  id: string;
+  title: string;
+  content: string;
+  category: string;
+  tag: string;
+}): Promise<[boolean, string?]> => {
+  try {
+    const fetchUrl = `${baseUrl}/blog/${id}/`;
+    await certifiedAxios.put(fetchUrl, {
+      title,
+      content,
+      category_id: category,
+      tags: tag,
+    });
+    return [true];
+  } catch (e: any) {
+    const errMsg = errorMiddleware(e);
+    const responseMsg = errMsg ? errMsg : '요청중 에러가 발생하였습니다.';
+    return [false, responseMsg];
+  }
+};
+
+export const deleteBlog = async (id: string): Promise<[boolean, string?]> => {
   try {
     const fetchUrl = `${baseUrl}/blog/${id}/`;
     await certifiedAxios.delete(fetchUrl);
     return [true];
   } catch (e: any) {
     const errMsg = errorMiddleware(e);
-    const responseMsg = errMsg ? errMsg : '요청중 에러가 발생하였습니다.';
+    const responseMsg = errMsg ? errMsg : '해당 게시글이 존재하지 않습니다.';
     return [false, responseMsg];
   }
 };

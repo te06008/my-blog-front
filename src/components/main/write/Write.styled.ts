@@ -38,6 +38,15 @@ const TitleInput = styled.input.attrs((props) => ({
   font-size: 20px;
 `;
 
+const CategoryWrapper = styled.div`
+  display: flex;
+  gap: 10px;
+  .icon {
+    cursor: pointer;
+    font-size: 1.5em;
+  }
+`;
+
 const CategorySelect = styled.select`
   height: 24px;
   width: 300px;
@@ -85,6 +94,7 @@ export default {
   Write,
   Title,
   TitleInput,
+  CategoryWrapper,
   CategorySelect,
   TagInput,
   ButtonWrapper,

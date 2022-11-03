@@ -14,6 +14,7 @@ function useNavigationBar() {
   const fetchLogout = async () => {
     const [isSuccess, msg] = await logoutRequest();
     window.sessionStorage.removeItem('isLogin');
+    window.sessionStorage.removeItem('username');
     window.location.reload();
   };
 

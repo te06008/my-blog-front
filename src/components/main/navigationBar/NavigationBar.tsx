@@ -72,8 +72,8 @@ function NavigationBar() {
           ))}
           <AiOutlineMenu
             onClick={onMenuClick}
-            className='menu-icon'
-            size='1.4em'
+            className="menu-icon"
+            size="1.4em"
           />
         </Styled.NavigationMenu>
       </Styled.Navigation>

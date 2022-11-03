@@ -4,8 +4,10 @@ import useSideBar from '../../../hooks/main/useHome/useSideBar';
 
 function SideBar({
   onCategoryClick,
+  onQueryChange,
 }: {
   onCategoryClick: (categoryName: string, categoryId: number) => void;
+  onQueryChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
   const [categoryList] = useSideBar();
   //검색내용 디바운스 구현 필요
@@ -13,7 +15,11 @@ function SideBar({
     <Styled.SideBar>
       <Styled.SearchBar>
         <IoIosSearch size="1.5em" />
-        <input type="text" placeholder="제목, 내용, 태그등" />
+        <input
+          type="text"
+          placeholder="제목, 내용, 태그등"
+          onChange={onQueryChange}
+        />
       </Styled.SearchBar>
       <Styled.CategoryBar>
         {categoryList.map((category) => (

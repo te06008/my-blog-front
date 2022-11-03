@@ -23,23 +23,45 @@ import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-css-extras';
 import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
 import useWrite from '../../../hooks/main/useWrite/useWrite';
+import { BiEdit } from 'react-icons/bi';
+import Modal from '../../common/Modal';
+import CategoryEditModal from './CategoryEditModal';
+import { BlogData } from '../../../types';
 
-function Write() {
-  const [titleRef, contentRef, categoryRef, tagRef, onPreview, onSubmit] =
-    useWrite();
+function Write({
+  isModify,
+  modifyData,
+}: {
+  isModify: boolean;
+  modifyData?: BlogData;
+}) {
+  const [
+    titleRef,
+    contentRef,
+    categoryRef,
+    tagRef,
+    onPreview,
+    onSubmit,
+    categoryList,
+    isModalOpen,
+    onCategoryEditClick,
+    onModalClose,
+    fetchCategoryList,
+  ] = useWrite(isModify);
   return (
     <Styled.Write>
-      <Styled.Title>글쓰기</Styled.Title>
+      <Styled.Title>{isModify ? '글 수정' : '글 쓰기'}</Styled.Title>
       <Styled.TitleInput
         ref={titleRef}
         type="text"
         placeholder="제목을 입력해 주세요"
+        defaultValue={isModify ? modifyData!.title : ''}
       />
       <Editor
         ref={contentRef}
         previewStyle="vertical"
         previewHighlight={false}
-        initialValue=" "
+        initialValue={isModify ? modifyData!.content : ' '}
         height="60vh"
         toolbarItems={[
           ['heading', 'bold', 'italic', 'strike'],
@@ -59,16 +81,27 @@ function Write() {
           ],
         ]}
       />
-      <Styled.CategorySelect ref={categoryRef} defaultValue="">
-        <option value="" disabled>
-          카테고리를 선택해 주세요.
-        </option>
-        <option value="일상">일상</option>
-      </Styled.CategorySelect>
+      <Styled.CategoryWrapper>
+        <Styled.CategorySelect
+          ref={categoryRef}
+          defaultValue={isModify ? modifyData!.category_id : ''}
+        >
+          <option value="" disabled>
+            카테고리를 선택해 주세요.
+          </option>
+          {categoryList.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.category_name}
+            </option>
+          ))}
+        </Styled.CategorySelect>
+        <BiEdit className="icon" onClick={onCategoryEditClick} />
+      </Styled.CategoryWrapper>
       <Styled.TagInput
         ref={tagRef}
         type="text"
         placeholder="태그 입력(#필요없이 ,로 구분)"
+        defaultValue={isModify ? modifyData!.tags : ''}
       />
       <Styled.ButtonWrapper>
         <button className="preview-btn" onClick={onPreview}>
@@ -78,6 +111,15 @@ function Write() {
           확인
         </button>
       </Styled.ButtonWrapper>
+      {isModalOpen && (
+        <Modal>
+          <CategoryEditModal
+            onClose={onModalClose}
+            categoryList={categoryList}
+            refetch={fetchCategoryList}
+          />
+        </Modal>
+      )}
     </Styled.Write>
   );
 }

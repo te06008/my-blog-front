@@ -36,3 +36,11 @@ export interface TOCList {
   isTabbed: boolean;
   id: string;
 }
+
+export interface BlogData {
+  id: number;
+  category_id: number;
+  title: string;
+  content: string;
+  tags: string;
+}

@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { getPostList } from '../../../libs/fetch';
 import { PostingListModel } from '../../../models';
+import _ from 'lodash';
 
 function usePostingList() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -29,10 +30,10 @@ function usePostingList() {
       ? JSON.parse(window.sessionStorage.getItem('post')!)
       : [],
   );
-
   const [postList, setPostList] = useState<PostingListModel[]>(
     postListData.current,
   );
+  const query = useRef<string>('');
 
   const onCategoryClick = (categoryName: string, categoryId: number) => {
     if (selectedCategory === categoryName) return;
@@ -61,16 +62,16 @@ function usePostingList() {
   };
 
   const getSlicedContent = (list: PostingListModel[]): PostingListModel[] => {
+    const regExp = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
     return list.map((item) => {
       return {
         ...item,
-        content: item.content.substring(0, 30),
+        content: item.content.replace(regExp, '').substring(0, 100),
       };
     });
   };
 
   const fetchPostList = useCallback(async () => {
-    console.log('fetch!');
     const queryString =
       selectedCategoryId.current === -1
         ? `page=${pageNum.current}&`
@@ -80,7 +81,8 @@ function usePostingList() {
     if (isSuccess && data) {
       const parsedList = getSlicedContent(data.results);
       postListData.current = postListData.current.concat(parsedList);
-      setPostList(postListData.current);
+      onQuerySearch();
+      //setPostList(postListData.current);
       window.sessionStorage.setItem('pageNum', pageNum.current.toString());
       window.sessionStorage.setItem(
         'isNextExist',
@@ -142,6 +144,37 @@ function usePostingList() {
     };
   }, []);
 
+  //디바운스 구현
+
+  const onQuerySearch = () => {
+    if (!postListData.current) return;
+    console.log(query);
+    const filteredList =
+      query.current === ''
+        ? postListData.current
+        : postListData.current.filter(
+            (post) =>
+              post.title
+                .replaceAll(' ', '')
+                .toLowerCase()
+                .includes(query.current.toLowerCase()) ||
+              post.tags
+                .replaceAll(' ', '')
+                .toLowerCase()
+                .includes(query.current.toLowerCase()),
+          );
+    setPostList(filteredList);
+  };
+
+  const queryDebounce = _.debounce((value) => {
+    query.current = value;
+    onQuerySearch();
+  }, 300);
+
+  const onQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    queryDebounce(e.target.value);
+  };
+
   return [
     selectedCategory,
     onCategoryClick,
@@ -149,6 +182,7 @@ function usePostingList() {
     isLoading,
     postList,
     scrollCallback,
+    onQueryChange,
   ] as [
     typeof selectedCategory,
     typeof onCategoryClick,
@@ -156,6 +190,7 @@ function usePostingList() {
     typeof isLoading,
     typeof postList,
     typeof scrollCallback,
+    typeof onQueryChange,
   ];
 }
 

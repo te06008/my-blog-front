@@ -20,30 +20,22 @@ function Posts({
 }) {
   const navigate = useNavigate();
   const [targetElement] = usePosts({ scrollCallback });
-  if (!data.length) {
-    return (
-      <Styled.Posts>
-        <Spinner />
-      </Styled.Posts>
-    );
-  }
-  console.log(data);
   return (
     <Styled.Posts>
       {data.map((post) => (
         <Styled.PostWrapper key={post.id}>
           <Styled.PostHeader>
             <div
-              className='post-header-title'
+              className="post-header-title"
               onClick={() => navigate(`/blog/${post.id}`)}
             >
-              {post.title}
+              <div>{post.title}</div>
             </div>
-            <div className='post-header-date'>
-              <BiCalendar size='1.2em' className='post-header-icon' />
+            <div className="post-header-date">
+              <BiCalendar size="1.2em" className="post-header-icon" />
               {dayjs(post.created_at).format('YYYY년 MM월 DD일')}
-              <div className='divider' />
-              <AiOutlineClockCircle size='1.2em' className='post-header-icon' />
+              <div className="divider" />
+              <AiOutlineClockCircle size="1.2em" className="post-header-icon" />
               {getModifiedTime(post.created_at, post.updated_at) ||
                 getTimePassed(post.updated_at)}
             </div>
@@ -53,12 +45,12 @@ function Posts({
           >{`${post.content}... Read More`}</Styled.PostBody>
           <Styled.PostCategory>
             {tagParser(post.tags).map((tag) => (
-              <div className='category-decoration' key={tag}>{`#${tag}`}</div>
+              <div className="category-decoration" key={tag}>{`#${tag}`}</div>
             ))}
           </Styled.PostCategory>
         </Styled.PostWrapper>
       ))}
-      <div className='observer' ref={targetElement} />
+      {data.length > 0 && <div className="observer" ref={targetElement} />}
     </Styled.Posts>
   );
 }

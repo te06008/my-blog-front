@@ -15,6 +15,7 @@ import Write from './components/main/write/Write';
 import GlobalStyles from './GlobalStyles';
 import useScrollToggle from './hooks/useScrollToggle';
 import theme from './Theme';
+import Modify from './components/main/Modify/Modify';
 
 function App() {
   const isLightTheme = useRecoilValue(isOsLightThemeAtom);
@@ -31,7 +32,8 @@ function App() {
               <Route path="home" element={<Home />} />
               <Route path="about" element={<AboutMe />} />
               <Route path="blog/:id" element={<Blog isPreview={false} />} />
-              <Route path="write" element={<Write />} />
+              <Route path="blog/:id/modify" element={<Modify />} />
+              <Route path="write" element={<Write isModify={false} />} />
               <Route path="preview" element={<Preview />} />
               <Route path="*" element={<Navigate to="/home" replace />} />
             </Route>

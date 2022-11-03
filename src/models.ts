@@ -36,6 +36,7 @@ export interface FooterDataModelInterface {
 
 export interface BlogModel {
   id: number;
+  category_id: number;
   title: string;
   tags: string;
   created_at: string;

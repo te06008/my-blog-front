@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import useBlogTOC from '../../../hooks/main/useBlog/useBlogToc';
 import { TOCList } from '../../../types';
 import Styled from './BlogTOC.styled';
@@ -19,4 +20,4 @@ function BlogTOC({ tocList }: { tocList: TOCList[] }) {
   );
 }
 
-export default BlogTOC;
+export default memo(BlogTOC);

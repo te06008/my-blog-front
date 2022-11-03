@@ -1,6 +1,7 @@
 import Styled from './SideBar.styled';
 import { IoIosSearch } from 'react-icons/io';
 import useSideBar from '../../../hooks/main/useHome/useSideBar';
+import { memo } from 'react';
 
 function SideBar({
   onCategoryClick,
@@ -36,4 +37,4 @@ function SideBar({
   );
 }
 
-export default SideBar;
+export default memo(SideBar);

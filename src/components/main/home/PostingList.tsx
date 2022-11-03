@@ -13,7 +13,6 @@ function PostingList() {
     scrollCallback,
     onQueryChange,
   ] = usePostingList();
-  console.log(postList);
   return (
     <Styled.PostingList>
       <Styled.PostingListHeader>

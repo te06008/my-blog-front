@@ -22,7 +22,7 @@ function App() {
   useScrollToggle();
   return (
     <HelmetProvider>
-      <ThemeProvider theme={theme.lightTheme}>
+      <ThemeProvider theme={isLightTheme ? theme.lightTheme : theme.darkTheme}>
         <GlobalStyles />
         <BrowserRouter>
           <ScrollToTop />

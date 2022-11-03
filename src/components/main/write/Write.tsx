@@ -27,6 +27,7 @@ import { BiEdit } from 'react-icons/bi';
 import Modal from '../../common/Modal';
 import CategoryEditModal from './CategoryEditModal';
 import { BlogData } from '../../../types';
+import { memo } from 'react';
 
 function Write({
   isModify,
@@ -124,4 +125,4 @@ function Write({
   );
 }
 
-export default Write;
+export default memo(Write);

@@ -1,5 +1,6 @@
 import Styled from './CommentFormArea.styled';
 import useCommentFormArea from '../../../hooks/main/useBlog/useCommentFormArea';
+import { memo } from 'react';
 
 function CommentFormArea({
   count,
@@ -61,4 +62,4 @@ function CommentFormArea({
   );
 }
 
-export default CommentFormArea;
+export default memo(CommentFormArea);

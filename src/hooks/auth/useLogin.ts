@@ -28,7 +28,6 @@ function useLogin() {
         window.sessionStorage.setItem('username', id);
         const isPrevious =
           window.sessionStorage.getItem('isPrevious') === 'true';
-        console.log(isPrevious);
         isPrevious ? navigate(-1) : navigate('/home');
       } else {
         alert('아이디 혹은 비밀번호가 틀렸습니다.');

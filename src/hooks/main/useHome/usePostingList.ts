@@ -185,7 +185,6 @@ function usePostingList() {
     query.current = e;
     searchBarRef.current!.value = e;
     onQuerySearch();
-    window.scrollTo(0, 0);
   };
 
   return [

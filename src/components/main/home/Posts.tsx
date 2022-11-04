@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router';
 import { PostingListModel } from '../../../models';
 import dayjs from 'dayjs';
 import getTimePassed from '../../../libs/getTimePassed';
-import Spinner from '../../common/Spinner';
 import usePosts from '../../../hooks/main/useHome/usePosts';
 import { memo } from 'react';
 import { tagParser } from '../../../libs/tagParser';

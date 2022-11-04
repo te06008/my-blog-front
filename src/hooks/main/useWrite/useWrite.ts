@@ -74,11 +74,6 @@ function useWrite(isModify: boolean) {
     window.localStorage.setItem('preview', previewJson);
 
     window.open('http://localhost:3000/preview', '_blank');
-    const getpreview = window.localStorage.getItem('preview');
-
-    if (getpreview) {
-      console.log(JSON.parse(getpreview));
-    }
   };
 
   const onPostBlog = async ({

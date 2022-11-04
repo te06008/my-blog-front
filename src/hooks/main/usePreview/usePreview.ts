@@ -7,7 +7,6 @@ function usePreview() {
   const isAvailableAccess = useCallback(() => {
     const previewData = window.localStorage.getItem('preview');
     const isLogin = window.sessionStorage.getItem('isLogin');
-    console.log(!previewData, isLogin === 'true');
     if (!previewData && (!isLogin || isLogin === 'false')) {
       alert('잘못된 접근입니다.');
       navigate('/home');

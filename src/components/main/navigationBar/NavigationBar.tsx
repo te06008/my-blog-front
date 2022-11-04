@@ -28,7 +28,7 @@ function NavigationBar() {
           url: 'about',
         },
         {
-          text: 'Log out',
+          text: 'Log Out',
           url: 'logout',
         },
       ]
@@ -42,7 +42,7 @@ function NavigationBar() {
           url: 'about',
         },
         {
-          text: 'Log in',
+          text: 'Log In',
           url: 'login',
         },
       ];

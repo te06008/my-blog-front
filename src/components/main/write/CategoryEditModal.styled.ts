@@ -56,8 +56,10 @@ const ModalFooter = styled.div`
     border: none;
     border-radius: 4px;
     font-size: 16px;
-    :hover {
-      opacity: 0.8;
+    @media (hover: hover) {
+      :hover {
+        opacity: 0.8;
+      }
     }
     line-height: 1.2;
   }

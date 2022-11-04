@@ -13,7 +13,7 @@ const IntroContent = styled.div`
     }
   }
   p {
-    color: #343a40;
+    color: ${(p) => p.theme.color.aboutPar};
     @media (max-width: 1366px) {
       font-size: 18px;
     }
@@ -31,7 +31,7 @@ const IntroContent = styled.div`
       margin-left: 30px;
       font-size: 18px;
     }
-    color: #212529;
+    color: ${(p) => p.theme.color.commentCount};
     margin-left: 40px;
     line-height: 1.4;
   }

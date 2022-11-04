@@ -34,6 +34,7 @@ function usePostingList() {
     postListData.current,
   );
   const query = useRef<string>('');
+  const searchBarRef = useRef<HTMLInputElement>(null);
 
   const onCategoryClick = (categoryName: string, categoryId: number) => {
     if (selectedCategory === categoryName) return;
@@ -62,11 +63,17 @@ function usePostingList() {
   };
 
   const getSlicedContent = (list: PostingListModel[]): PostingListModel[] => {
-    const regExp = /[a-z0-9]|[\[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
+    const getKoreanRegExp = /[a-z0-9]|[\[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
+    const combineRegExp = / +/g;
     return list.map((item) => {
+      const parsedStr = item.content
+        .replace(getKoreanRegExp, '')
+        .replaceAll('\n', '')
+        .replace(combineRegExp, ' ')
+        .trim();
       return {
         ...item,
-        content: item.content.replace(regExp, '').substring(0, 100),
+        content: parsedStr.substring(0, 100),
       };
     });
   };
@@ -148,7 +155,6 @@ function usePostingList() {
 
   const onQuerySearch = () => {
     if (!postListData.current) return;
-    console.log(query);
     const filteredList =
       query.current === ''
         ? postListData.current
@@ -175,6 +181,13 @@ function usePostingList() {
     queryDebounce(e.target.value);
   };
 
+  const onTagClick = (e: string) => {
+    query.current = e;
+    searchBarRef.current!.value = e;
+    onQuerySearch();
+    window.scrollTo(0, 0);
+  };
+
   return [
     selectedCategory,
     onCategoryClick,
@@ -183,6 +196,8 @@ function usePostingList() {
     postList,
     scrollCallback,
     onQueryChange,
+    onTagClick,
+    searchBarRef,
   ] as [
     typeof selectedCategory,
     typeof onCategoryClick,
@@ -191,6 +206,8 @@ function usePostingList() {
     typeof postList,
     typeof scrollCallback,
     typeof onQueryChange,
+    typeof onTagClick,
+    typeof searchBarRef,
   ];
 }
 

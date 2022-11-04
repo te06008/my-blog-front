@@ -29,6 +29,8 @@ export interface ThemeInterface {
     commentCount: string;
     input: string;
     commentDate: string;
+    aboutPar: string;
+    floatBtn: string;
   };
   backgroundColor: {
     default: string;
@@ -49,13 +51,14 @@ export interface ThemeInterface {
     unreadAlarm: string;
 
     hover: string;
-    // modal: string;
+    modal: string;
     bottomModal: string;
 
     ///
     navBar: string;
     categorySelect: string;
     categoryCard: string;
+    floatBtn: string;
   };
 }
 
@@ -89,6 +92,8 @@ const lightTheme: ThemeInterface = {
     commentCount: '#212529',
     input: '#2b2b2b',
     commentDate: '#868e96',
+    aboutPar: '#343a40',
+    floatBtn: '#454545',
   },
   backgroundColor: {
     default: '#ffffff',
@@ -111,9 +116,11 @@ const lightTheme: ThemeInterface = {
     bottomModal: '#ffffff',
 
     ///
+    modal: '#ffffff',
     navBar: 'darkgray',
     categorySelect: 'darkgray',
     categoryCard: '#000000bd',
+    floatBtn: '#ffffff',
   },
 };
 
@@ -147,6 +154,8 @@ const darkTheme: ThemeInterface = {
     commentCount: '#eee',
     input: '#ccc',
     commentDate: '#ddd',
+    aboutPar: '#ddd',
+    floatBtn: '#eee',
   },
   backgroundColor: {
     default: '#2a2a2a',
@@ -170,9 +179,11 @@ const darkTheme: ThemeInterface = {
     bottomModal: '#3a3535',
 
     ///
+    modal: '#555',
     navBar: 'gray',
     categorySelect: 'gray',
     categoryCard: '#444',
+    floatBtn: '#444',
   },
 };
 

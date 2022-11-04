@@ -55,8 +55,9 @@ function NavigationBar() {
         <Styled.NavigationMenu>
           <div
             onClick={() => {
-              const isBlog = location.pathname.split('/')[1] === 'blog';
-              if (isBlog) {
+              const nowUrl = location.pathname.split('/')[1];
+              const isReloadRequire = nowUrl === 'blog' || nowUrl === 'preview';
+              if (isReloadRequire) {
                 if (
                   window.confirm(
                     '이 페이지 새로고침 후에 테마가 적용됩니다. 새로고침 하시겠습니까?',

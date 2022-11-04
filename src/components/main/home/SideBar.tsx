@@ -6,12 +6,13 @@ import { memo } from 'react';
 function SideBar({
   onCategoryClick,
   onQueryChange,
+  searchBarRef,
 }: {
   onCategoryClick: (categoryName: string, categoryId: number) => void;
   onQueryChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  searchBarRef: React.RefObject<HTMLInputElement>;
 }) {
   const [categoryList] = useSideBar();
-  //검색내용 디바운스 구현 필요
   return (
     <Styled.SideBar>
       <Styled.SearchBar>
@@ -20,6 +21,7 @@ function SideBar({
           type="text"
           placeholder="제목, 내용, 태그등"
           onChange={onQueryChange}
+          ref={searchBarRef}
         />
       </Styled.SearchBar>
       <Styled.CategoryBar>

@@ -14,9 +14,11 @@ import getModifiedTime from '../../../libs/getModifiedTime';
 function Posts({
   data,
   scrollCallback,
+  onTagClick,
 }: {
   data: PostingListModel[];
   scrollCallback: () => void;
+  onTagClick: (e: string) => void;
 }) {
   const navigate = useNavigate();
   const [targetElement] = usePosts({ scrollCallback });
@@ -25,11 +27,13 @@ function Posts({
       {data.map((post, key) => (
         <Styled.PostWrapper key={post.id} isEnd={data.length - 1 === key}>
           <Styled.PostHeader>
-            <div
-              className="post-header-title"
-              onClick={() => navigate(`/blog/${post.id}`)}
-            >
-              <div>{post.title}</div>
+            <div className="post-header-title">
+              <div
+                className="title-text"
+                onClick={() => navigate(`/blog/${post.id}`)}
+              >
+                {post.title}
+              </div>
             </div>
             <div className="post-header-date">
               <BiCalendar size="1.2em" className="post-header-icon" />
@@ -45,7 +49,11 @@ function Posts({
           >{`${post.content}... Read More`}</Styled.PostBody>
           <Styled.PostCategory>
             {tagParser(post.tags).map((tag) => (
-              <div className="category-decoration" key={tag}>{`#${tag}`}</div>
+              <div
+                className="category-decoration"
+                key={tag}
+                onClick={() => onTagClick(tag)}
+              >{`#${tag}`}</div>
             ))}
           </Styled.PostCategory>
         </Styled.PostWrapper>

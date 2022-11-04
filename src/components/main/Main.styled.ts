@@ -15,10 +15,10 @@ const ScrollTopButton = styled.div`
   right: 60px;
   bottom: 48px;
   cursor: pointer;
-  color: #454545;
+  color: ${(p) => p.theme.color.floatBtn};
   transition: 0.3s;
   border-radius: 32px;
-  background: white;
+  background: ${(p) => p.theme.backgroundColor.floatBtn};
   box-shadow: 0 2px 15px rgb(0 0 0 / 15%);
   opacity: 0;
   font-size: 24px;
@@ -42,10 +42,10 @@ const PostButton = styled.div`
   left: 60px;
   bottom: 48px;
   cursor: pointer;
-  color: #454545;
+  color: ${(p) => p.theme.color.floatBtn};
   transition: 0.3s;
   border-radius: 32px;
-  background: white;
+  background: ${(p) => p.theme.backgroundColor.floatBtn};
   box-shadow: 0 2px 15px rgb(0 0 0 / 15%);
   font-size: 24px;
   @media (max-width: 768px) {

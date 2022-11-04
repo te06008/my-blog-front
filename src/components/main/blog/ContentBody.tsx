@@ -32,7 +32,6 @@ function ContentBody({
   setTocList: React.Dispatch<React.SetStateAction<TOCList[]>>;
 }) {
   const [contentRef, isLightTheme] = useContentBody({ setTocList });
-  console.log(data);
   return (
     <Styled.ContentBody ref={contentRef}>
       <Viewer

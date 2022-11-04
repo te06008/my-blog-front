@@ -12,6 +12,8 @@ function PostingList() {
     postList,
     scrollCallback,
     onQueryChange,
+    onTagClick,
+    searchBarRef,
   ] = usePostingList();
   return (
     <Styled.PostingList>
@@ -26,10 +28,15 @@ function PostingList() {
         </div>
       </Styled.PostingListHeader>
       <Styled.PostingListBody>
-        <Posts data={postList} scrollCallback={scrollCallback} />
+        <Posts
+          data={postList}
+          scrollCallback={scrollCallback}
+          onTagClick={onTagClick}
+        />
         <SideBar
           onCategoryClick={onCategoryClick}
           onQueryChange={onQueryChange}
+          searchBarRef={searchBarRef}
         />
       </Styled.PostingListBody>
     </Styled.PostingList>

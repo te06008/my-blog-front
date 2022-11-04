@@ -80,8 +80,10 @@ const HeaderRight = styled.div`
   .header-right-text {
     cursor: pointer;
     color: ${(p) => p.theme.color.blogEditText};
-    :hover {
-      text-decoration: underline;
+    @media (hover: hover) {
+      :hover {
+        text-decoration: underline;
+      }
     }
   }
 `;

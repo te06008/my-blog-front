@@ -33,12 +33,16 @@ const PostHeader = styled.div`
     font-size: 23px;
     font-weight: 600;
     color: ${(p) => p.theme.color.postTitle};
-    cursor: pointer;
     @media (max-width: 768px) {
       font-size: 20px;
     }
     @media (max-width: 480px) {
       font-size: 18px;
+    }
+    .title-text {
+      display: inline-block;
+      width: auto;
+      cursor: pointer;
     }
   }
   .post-header-date {
@@ -91,7 +95,7 @@ const PostCategory = styled.div`
     color: ${(p) => p.theme.color.postTag};
     border: ${(p) => `1px solid ${p.theme.color.postTag}`};
     border-radius: 2px;
-    @media {
+    @media (hover: hover) {
       :hover {
         cursor: pointer;
         filter: invert(50%);

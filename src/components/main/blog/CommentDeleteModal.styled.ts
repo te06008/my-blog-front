@@ -7,7 +7,7 @@ const CommentDeleteModal = styled.div`
 
   padding: 40px;
 
-  background-color: rgb(255, 255, 255);
+  background-color: ${(p) => p.theme.backgroundColor.modal};
   border-radius: 10px;
   box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
 
@@ -57,8 +57,10 @@ const ModalFooter = styled.div`
     border: none;
     border-radius: 4px;
     font-size: 16px;
-    :hover {
-      opacity: 0.8;
+    @media (hover: hover) {
+      :hover {
+        opacity: 0.8;
+      }
     }
     line-height: 1.2;
   }

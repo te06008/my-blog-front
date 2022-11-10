@@ -4,18 +4,20 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 import { isOsLightThemeAtom } from './atoms/ThemeAtom';
-import Login from './components/auth/Login';
 import ScrollToTop from './ScrollToTop';
-import AboutMe from './components/main/about/AboutMe';
-import Blog from './components/main/blog/Blog';
 import Home from './components/main/home/Home';
 import Main from './components/main/Main';
-import Preview from './components/main/preview/Preview';
-import Write from './components/main/write/Write';
 import GlobalStyles from './GlobalStyles';
 import useScrollToggle from './hooks/useScrollToggle';
 import theme from './Theme';
-import Modify from './components/main/Modify/Modify';
+import loadable from '@loadable/component';
+
+const AboutMe = loadable(() => import('./components/main/about/AboutMe'));
+const Blog = loadable(() => import('./components/main/blog/Blog'));
+const Modify = loadable(() => import('./components/main/Modify/Modify'));
+const Write = loadable(() => import('./components/main/write/Write'));
+const Preview = loadable(() => import('./components/main/preview/Preview'));
+const Login = loadable(() => import('./components/auth/Login'));
 
 function App() {
   const isLightTheme = useRecoilValue(isOsLightThemeAtom);

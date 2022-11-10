@@ -66,14 +66,27 @@ function usePostingList() {
     const getKoreanRegExp = /[a-z0-9]|[\[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
     const combineRegExp = / +/g;
     return list.map((item) => {
-      const parsedStr = item.content
-        .replace(getKoreanRegExp, '')
-        .replaceAll('\n', '')
-        .replace(combineRegExp, ' ')
-        .trim();
+      const slice = item.content.split('\n');
+      const maxLength = 140;
+      let parsedStr = '';
+      let flag = false;
+      slice.forEach((str) => {
+        if (parsedStr.length > maxLength) return;
+        const getTrim = str.replaceAll(' ', '');
+        if (getTrim.length === 0) return;
+        const first = getTrim[0];
+        if (first === '#' || first === '<') return;
+        if (first === '`') {
+          flag = !flag;
+        }
+        if (!flag && first !== '`') {
+          if (parsedStr.length > 0) parsedStr += ' ';
+          parsedStr += str;
+        }
+      });
       return {
         ...item,
-        content: parsedStr.substring(0, 100),
+        content: parsedStr.substring(0, maxLength),
       };
     });
   };
@@ -89,7 +102,6 @@ function usePostingList() {
       const parsedList = getSlicedContent(data.results);
       postListData.current = postListData.current.concat(parsedList);
       onQuerySearch();
-      //setPostList(postListData.current);
       window.sessionStorage.setItem('pageNum', pageNum.current.toString());
       window.sessionStorage.setItem(
         'isNextExist',

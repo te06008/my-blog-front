@@ -63,8 +63,6 @@ function usePostingList() {
   };
 
   const getSlicedContent = (list: PostingListModel[]): PostingListModel[] => {
-    const getKoreanRegExp = /[a-z0-9]|[\[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
-    const combineRegExp = / +/g;
     return list.map((item) => {
       const slice = item.content.split('\n');
       const maxLength = 140;
@@ -75,7 +73,7 @@ function usePostingList() {
         const getTrim = str.replaceAll(' ', '');
         if (getTrim.length === 0) return;
         const first = getTrim[0];
-        if (first === '#' || first === '<') return;
+        if (first === '#' || first === '<' || first === '>') return;
         if (first === '`') {
           flag = !flag;
         }

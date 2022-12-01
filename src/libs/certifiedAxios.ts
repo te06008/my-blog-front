@@ -4,4 +4,6 @@ const certifiedAxios = axios.create();
 certifiedAxios.defaults.withCredentials = true;
 certifiedAxios.defaults.headers['Access-Control-Allow-Headers'] =
   'http://te06008.me';
+certifiedAxios.defaults.headers['Access-Control-Allow-Origin'] =
+  'http://te06008.me';
 export default certifiedAxios;

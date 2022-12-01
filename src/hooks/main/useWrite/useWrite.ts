@@ -73,7 +73,7 @@ function useWrite(isModify: boolean) {
     });
     window.localStorage.setItem('preview', previewJson);
 
-    window.open('http://localhost:3000/preview', '_blank');
+    window.open(`http://${window.location.host}/preview`, '_blank');
   };
 
   const onPostBlog = async ({

@@ -297,7 +297,7 @@ export const deleteComment = async (
 ): Promise<[boolean, string?]> => {
   try {
     const fetchUrl = `${baseUrl}/comment/${commentId}/`;
-    await axios.delete(fetchUrl, {
+    await certifiedAxios.delete(fetchUrl, {
       data: {
         password: password,
       },

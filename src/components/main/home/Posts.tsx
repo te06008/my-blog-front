@@ -36,11 +36,11 @@ function Posts({
             </div>
             <div className="post-header-date">
               <BiCalendar size="1.2em" className="post-header-icon" />
-              {dayjs(post.created_at).format('YYYY년 MM월 DD일')}
+              {dayjs(post.created_at).format('YYYY년 MM월 DD일') + '작성됨'}
               <div className="divider" />
               <AiOutlineClockCircle size="1.2em" className="post-header-icon" />
               {getModifiedTime(post.created_at, post.updated_at) ||
-                getTimePassed(post.updated_at)}
+                getTimePassed(post.updated_at) + ' 수정됨'}
             </div>
           </Styled.PostHeader>
           <Styled.PostBody

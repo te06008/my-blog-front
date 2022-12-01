@@ -23,8 +23,7 @@ function ContentHeader({ data }: { data: HeaderDataInterface }) {
           <div className="content-header-date">
             <BiCalendar size="1.2em" className="content-header-icon" />
             {'Posted on ' +
-              dayjs(data.create_datetime).format('YYYY년 MM월 DD일') +
-              ' 작성됨'}
+              dayjs(data.create_datetime).format('YYYY년 MM월 DD일')}
             <div className="divider" />
             <AiOutlineClockCircle
               size="1.2em"

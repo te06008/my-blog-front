@@ -16,10 +16,10 @@ function SideBar({
   return (
     <Styled.SideBar>
       <Styled.SearchBar>
-        <IoIosSearch size="1.5em" />
+        <IoIosSearch size='1.5em' />
         <input
-          type="text"
-          placeholder="제목, 내용, 태그등"
+          type='text'
+          placeholder='제목 혹은 태그'
           onChange={onQueryChange}
           ref={searchBarRef}
         />
@@ -30,8 +30,8 @@ function SideBar({
             key={category.id}
             onClick={() => onCategoryClick(category.category_name, category.id)}
           >
-            <div className="categorymenu-text">{category.category_name}</div>
-            <div className="categorymenu-number">{category.count}</div>
+            <div className='categorymenu-text'>{category.category_name}</div>
+            <div className='categorymenu-number'>{category.count}</div>
           </Styled.CategoryMenu>
         ))}
       </Styled.CategoryBar>

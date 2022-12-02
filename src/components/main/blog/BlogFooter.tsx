@@ -24,8 +24,8 @@ function BlogFooter({
             navigate(`/blog/${data.previous.id}`);
           }}
         >
-          <IoIosArrowBack size="1.5em" />
-          <div className="navigator-item-text">{data.previous.title}</div>
+          <IoIosArrowBack size='1.5em' />
+          <div className='navigator-item-text'>{data.previous.title}</div>
         </Styled.NavigatorItem>
         <Styled.NavigatorItem
           isVisible={data.next.id !== -1}
@@ -34,19 +34,22 @@ function BlogFooter({
             navigate(`/blog/${data.next.id}`);
           }}
         >
-          <div className="navigator-item-text">{data.next.title}</div>
-          <IoIosArrowForward size="1.5em" />
+          <div className='navigator-item-text'>{data.next.title}</div>
+          <IoIosArrowForward size='1.5em' />
         </Styled.NavigatorItem>
       </Styled.FooterNavigator>
       {data.related_posts.length > 0 && (
         <Styled.RelatedPosts>
-          <div className="posts-title"> Related Posts</div>
+          <div className='posts-title'> Related Posts</div>
           {data.related_posts.map((post) => (
-            <div className="posts-item" key={post.id}>
-              <BsFillCircleFill size="0.4em" />
+            <div className='posts-item' key={post.id}>
+              <BsFillCircleFill size='0.4em' />
               <div
-                className="posts-item-text"
-                onClick={() => navigate(`/blog/${post.id}`)}
+                className='posts-item-text'
+                onClick={() => {
+                  setIsLoading(true);
+                  navigate(`/blog/${post.id}`);
+                }}
               >
                 {post.title}
               </div>

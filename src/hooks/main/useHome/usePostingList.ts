@@ -56,6 +56,7 @@ function usePostingList() {
 
   const onCategoryDelete = () => {
     setSelectedCategory('All');
+    window.sessionStorage.setItem('categoryName', 'All');
     postListData.current = [];
     pageNum.current = 1;
     selectedCategoryId.current = -1;

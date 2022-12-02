@@ -44,7 +44,12 @@ function useBlogComment() {
   };
 
   const onModalOpen = (commentId: number) => {
+    const isLogin = window.sessionStorage.getItem('isLogin') === 'true';
     selectedCommentId.current = commentId;
+    if (isLogin && window.confirm('정말로 삭제하시겠습니까?')) {
+      onDeleteComment('');
+      return;
+    }
     setIsModalOpen(true);
   };
 

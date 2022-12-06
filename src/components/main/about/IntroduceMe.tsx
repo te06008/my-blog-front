@@ -3,11 +3,11 @@ import Styled from './IntroduceMe.styled';
 function IntroduceMe() {
   return (
     <Styled.IntroContent>
-      <div className='intro-title'>Yeo ChungGwan</div>
+      <div className="intro-title">Yeo ChungGwan</div>
       <p>
         주니어 프론트엔드 개발자입니다.
         <br />
-        {`React와 Problem&Solving에 관심이 많습니다.`}
+        {`React와 Problem Solving에 관심이 많습니다.`}
       </p>
       <ul>
         <li>

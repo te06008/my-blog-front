@@ -25,6 +25,12 @@ function Blog({ isPreview, ...rest }: { isPreview: boolean }) {
     <Styled.Blog>
       <Helmet>
         <title>Te06008 | Blog</title>
+        <meta
+          name="description"
+          property="og:description"
+          content="Post Page"
+        />
+        <meta name="url" property="og:url" content={window.location.href} />
       </Helmet>
       {!isLoading ? (
         <>

@@ -9,9 +9,14 @@ function Login() {
     <Styled.LoginPage>
       <Helmet>
         <title>Login | Te06008's Blog</title>
+        <meta
+          name="description"
+          property="og:description"
+          content="Login Page"
+        />
+        <meta name="url" property="og:url" content={window.location.href} />
       </Helmet>
-
-      <Styled.BackgroundVideo src='./bg.mp4' autoPlay muted loop />
+      <Styled.BackgroundVideo src="./bg.mp4" autoPlay muted loop />
       <Styled.Main>
         <LoginBox />
         <Styled.TitleLabel onClick={() => navigate('/home')}>

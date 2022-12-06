@@ -8,6 +8,12 @@ function Home() {
     <Styled.Home>
       <Helmet>
         <title>Te06008 | Home</title>
+        <meta
+          name="description"
+          property="og:description"
+          content="Blog Home"
+        />
+        <meta name="url" property="og:url" content={window.location.href} />
       </Helmet>
       <HomeBanner />
       <PostingList />

@@ -11,7 +11,11 @@ function BlogTOC({ tocList }: { tocList: TOCList[] }) {
       <div className="toc-title">목차</div>
       <Styled.TOCList>
         {tocList.map((content) => (
-          <Styled.TOCItem isSub={content.isTabbed} href={`#${content.id}`}>
+          <Styled.TOCItem
+            isSub={content.isTabbed}
+            href={`#${content.id}`}
+            key={content.id}
+          >
             {content.text}
           </Styled.TOCItem>
         ))}

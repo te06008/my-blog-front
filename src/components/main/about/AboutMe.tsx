@@ -9,6 +9,12 @@ function AboutMe() {
     <Styled.AboutMe>
       <Helmet>
         <title>Te06008 | About</title>
+        <meta
+          name="description"
+          property="og:description"
+          content="About Page"
+        />
+        <meta name="url" property="og:url" content={window.location.href} />
       </Helmet>
       <Styled.IntroduceWrapper>
         <IntroduceMe />
